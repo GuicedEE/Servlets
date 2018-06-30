@@ -16,7 +16,7 @@
  */
 package com.jwebmp.guicedservlets;
 
-import com.jwebmp.guiceinjection.interfaces.DefaultBinder;
+import com.jwebmp.guicedinjection.interfaces.DefaultBinder;
 
 import java.io.Serializable;
 import java.util.Comparator;

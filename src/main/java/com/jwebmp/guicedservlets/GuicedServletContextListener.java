@@ -2,7 +2,7 @@ package com.jwebmp.guicedservlets;
 
 import com.google.inject.Injector;
 import com.google.inject.servlet.GuiceServletContextListener;
-import com.jwebmp.guiceinjection.GuiceContext;
+import com.jwebmp.guicedinjection.GuiceContext;
 
 import javax.servlet.ServletContextEvent;
 

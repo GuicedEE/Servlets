@@ -24,9 +24,9 @@ import com.google.inject.matcher.Matcher;
 import com.google.inject.servlet.ServletModule;
 import com.google.inject.spi.ProvisionListener;
 import com.google.inject.spi.TypeListener;
-import com.jwebmp.guiceinjection.GuiceContext;
-import com.jwebmp.guiceinjection.Reflections;
-import com.jwebmp.guiceinjection.annotations.GuiceInjectorModuleMarker;
+import com.jwebmp.guicedinjection.GuiceContext;
+import com.jwebmp.guicedinjection.Reflections;
+import com.jwebmp.guicedinjection.annotations.GuiceInjectorModuleMarker;
 import com.jwebmp.logger.LogFactory;
 
 import java.io.Serializable;
@@ -45,6 +45,7 @@ import java.util.logging.Logger;
  * @since 12 Dec 2016
  */
 @GuiceInjectorModuleMarker
+@SuppressWarnings("unused")
 public class GuiceSiteInjectorModule
 		extends ServletModule
 		implements Serializable
@@ -63,7 +64,7 @@ public class GuiceSiteInjectorModule
 	/**
 	 * Gets the current sort order, default 100
 	 *
-	 * @return
+	 * @return the given sort order
 	 */
 	public int getSortOrder()
 	{
@@ -74,6 +75,7 @@ public class GuiceSiteInjectorModule
 	 * Sets the current sort order default 100
 	 *
 	 * @param sortOrder
+	 * 		the given sort order
 	 */
 	public void setSortOrder(int sortOrder)
 	{
@@ -84,9 +86,11 @@ public class GuiceSiteInjectorModule
 	 * urlPatterns - Any Servlet-style patterns. examples: /*, /html/*, *.html, etc. Since: 4.1
 	 *
 	 * @param urlPattern
+	 * 		The url pattern
 	 * @param morePatterns
+	 * 		any additional patterns
 	 *
-	 * @return
+	 * @return The key builder
 	 */
 	public ServletKeyBindingBuilder serveSite(String urlPattern, String... morePatterns)
 	{
@@ -97,8 +101,9 @@ public class GuiceSiteInjectorModule
 	 * urlPatterns - Any Servlet-style patterns. examples: /*, /html/*, *.html, etc. Since: 4.1
 	 *
 	 * @param urlPatterns
+	 * 		The url pattern
 	 *
-	 * @return
+	 * @return The key builder
 	 */
 	public ServletKeyBindingBuilder serveSite(Iterable<String> urlPatterns)
 	{
@@ -109,9 +114,11 @@ public class GuiceSiteInjectorModule
 	 * regexes - Any Java-style regular expressions. Since: 4.1
 	 *
 	 * @param regex
+	 * 		The regex to apply oto serve
 	 * @param regexes
+	 * 		The regexes to apply
 	 *
-	 * @return
+	 * @return The key builder
 	 */
 	public ServletKeyBindingBuilder serveSiteRegex(String regex, String... regexes)
 	{
@@ -122,8 +129,9 @@ public class GuiceSiteInjectorModule
 	 * regexes - Any Java-style regular expressions. Since: 4.1
 	 *
 	 * @param regexes
+	 * 		The regexes to apply
 	 *
-	 * @return
+	 * @return The key builder
 	 */
 	public ServletKeyBindingBuilder serveSiteRegex(Iterable<String> regexes)
 	{
@@ -177,7 +185,9 @@ public class GuiceSiteInjectorModule
 	 * Binds to a given scope
 	 *
 	 * @param scopeAnnotation
+	 * 		The annotation
 	 * @param scope
+	 * 		The scope to apply
 	 */
 	@Override
 	public void bindScope(Class<? extends Annotation> scopeAnnotation, Scope scope)
@@ -189,9 +199,11 @@ public class GuiceSiteInjectorModule
 	 * Binds to a given guice key
 	 *
 	 * @param <T>
+	 * 		The type to bind
 	 * @param key
+	 * 		The key to bind
 	 *
-	 * @return
+	 * @return The key builder
 	 */
 	@Override
 	public <T> LinkedBindingBuilder<T> bind(Key<T> key)
@@ -203,9 +215,11 @@ public class GuiceSiteInjectorModule
 	 * Binds to a given type literal
 	 *
 	 * @param <T>
+	 * 		The type to bind
 	 * @param typeLiteral
+	 * 		The type literal to bind - create abstract instance of type
 	 *
-	 * @return
+	 * @return The key builder
 	 */
 	@Override
 	public <T> AnnotatedBindingBuilder<T> bind(TypeLiteral<T> typeLiteral)
@@ -217,9 +231,11 @@ public class GuiceSiteInjectorModule
 	 * Binds to a given class
 	 *
 	 * @param <T>
+	 * 		The type to apply
 	 * @param clazz
+	 * 		The class to bind
 	 *
-	 * @return
+	 * @return the key builder
 	 */
 	@Override
 	public <T> AnnotatedBindingBuilder<T> bind(Class<T> clazz)
@@ -230,7 +246,7 @@ public class GuiceSiteInjectorModule
 	/**
 	 * Binds to a given constant
 	 *
-	 * @return
+	 * @return The key builder
 	 */
 	@Override
 	public AnnotatedConstantBindingBuilder bindConstant()
@@ -242,6 +258,7 @@ public class GuiceSiteInjectorModule
 	 * Installs a given module
 	 *
 	 * @param module
+	 * 		The module to install with this one
 	 */
 	@Override
 	public void install(Module module)
@@ -253,7 +270,9 @@ public class GuiceSiteInjectorModule
 	 * Bind listener
 	 *
 	 * @param typeMatcher
+	 * 		The type literal to match
 	 * @param listener
+	 * 		The type listener for listening
 	 */
 	@Override
 	public void bindListener(Matcher<? super TypeLiteral<?>> typeMatcher, TypeListener listener)
@@ -265,7 +284,9 @@ public class GuiceSiteInjectorModule
 	 * Bind listener
 	 *
 	 * @param bindingMatcher
+	 * 		The type to listen for
 	 * @param listener
+	 * 		The listener
 	 */
 	@Override
 	public void bindListener(Matcher<? super Binding<?>> bindingMatcher, ProvisionListener... listener)
@@ -277,8 +298,9 @@ public class GuiceSiteInjectorModule
 	 * urlPatterns - Any Servlet-style patterns. examples: /*, /html/*, *.html, etc. Since: 4.1
 	 *
 	 * @param urlPatterns
+	 * 		The url pattern to apply
 	 *
-	 * @return
+	 * @return The filter key builder
 	 */
 	public FilterKeyBindingBuilder filter$(Iterable<String> urlPatterns)
 	{
@@ -289,9 +311,11 @@ public class GuiceSiteInjectorModule
 	 * regexes - Any Java-style regular expressions. Since: 4.1
 	 *
 	 * @param regex
+	 * 		The regex
 	 * @param regexes
+	 * 		Any additional regexes
 	 *
-	 * @return
+	 * @return The filter key builder
 	 */
 	public FilterKeyBindingBuilder filterRegex$(String regex, String... regexes)
 	{
@@ -302,8 +326,9 @@ public class GuiceSiteInjectorModule
 	 * urlPatterns - Any Servlet-style patterns. examples: /*, /html/*, *.html, etc. Since: 4.1
 	 *
 	 * @param regexes
+	 * 		The regexes to apply
 	 *
-	 * @return
+	 * @return The filer key builder
 	 */
 	public FilterKeyBindingBuilder filterRegex$(Iterable<String> regexes)
 	{
@@ -314,9 +339,11 @@ public class GuiceSiteInjectorModule
 	 * urlPatterns - Any Servlet-style patterns. examples: /*, /html/*, *.html, etc. Since: 4.1
 	 *
 	 * @param urlPattern
+	 * 		The url pattern
 	 * @param morePatterns
+	 * 		The url pattern
 	 *
-	 * @return
+	 * @return the key builder
 	 */
 	public ServletKeyBindingBuilder serve$(String urlPattern, String... morePatterns)
 	{
@@ -327,8 +354,9 @@ public class GuiceSiteInjectorModule
 	 * urlPatterns - Any Servlet-style patterns. examples: /*, /html/*, *.html, etc. Since: 4.1
 	 *
 	 * @param urlPatterns
+	 * 		The url pattern to apply
 	 *
-	 * @return
+	 * @return The system serving at the generated address
 	 */
 	public ServletKeyBindingBuilder serve$(Iterable<String> urlPatterns)
 	{
@@ -339,9 +367,11 @@ public class GuiceSiteInjectorModule
 	 * urlPatterns - Any Servlet-style patterns. examples: /*, /html/*, *.html, etc. Since: 4.1
 	 *
 	 * @param regex
+	 * 		Any regex that should be applied
 	 * @param regexes
+	 * 		The regexes additional
 	 *
-	 * @return
+	 * @return The key builder
 	 */
 	public ServletKeyBindingBuilder serveRegex$(String regex, String... regexes)
 	{
@@ -352,8 +382,9 @@ public class GuiceSiteInjectorModule
 	 * regexes - Any Java-style regular expressions. Since: 4.1
 	 *
 	 * @param regexes
+	 * 		Any regexes to be served
 	 *
-	 * @return
+	 * @return The key builder
 	 */
 	public ServletKeyBindingBuilder serveRegex$(Iterable<String> regexes)
 	{
@@ -363,7 +394,7 @@ public class GuiceSiteInjectorModule
 	/**
 	 * This method only works if you are using the GuiceServletContextListener to create your injector. Otherwise, it returns null.
 	 *
-	 * @return
+	 * @return The given servlet context
 	 */
 	public javax.servlet.ServletContext getServletContext$()
 	{
@@ -374,9 +405,11 @@ public class GuiceSiteInjectorModule
 	 * urlPatterns - Any Servlet-style patterns. examples: /*, /html/*, *.html, etc. Since: 4.1
 	 *
 	 * @param urlPattern
+	 * 		The url pattern
 	 * @param morePatterns
+	 * 		The more patterns
 	 *
-	 * @return
+	 * @return The filter key builder
 	 */
 	public FilterKeyBindingBuilder filter$(String urlPattern, String... morePatterns)
 	{
@@ -387,8 +420,11 @@ public class GuiceSiteInjectorModule
 	 * Binds a method intercepter
 	 *
 	 * @param classMatcher
+	 * 		The given class matcher
 	 * @param methodMatcher
+	 * 		The given method matcher
 	 * @param interceptors
+	 * 		The given intercept
 	 */
 	public void bindInterceptor$(Matcher<? super Class<?>> classMatcher, Matcher<? super Method> methodMatcher, org.aopalliance.intercept.MethodInterceptor... interceptors)
 	{
