@@ -1,0 +1,80 @@
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                      https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.jwebmp</groupId>
+        <artifactId>jwebmp-bom</artifactId>
+        <version>0.0.0_0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>guiced-servlets</artifactId>
+    <packaging>jar</packaging>
+
+    <name>Guiced Servlets</name>
+    <description>An integration library for Servlets in the Guiced Injection Framework
+    </description>
+    <url>https://github.com/GedMarc/GuicedServlets</url>
+
+    <repositories>
+        <repository>
+            <id>jwebmp-snapshot</id>
+            <name>JWebMPArtifactory-snapshots</name>
+            <url>https://jwebmp.com/artifactory/libs-snapshot</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.jwebmp</groupId>
+            <artifactId>guiced-injection</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.inject.extensions</groupId>
+            <artifactId>guice-servlet</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-all</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+        </dependency>
+    </dependencies>
+
+    <scm>
+        <url>https://github.com/GedMarc/LogMaster.git</url>
+    </scm>
+
+    <issueManagement>
+        <system>Github</system>
+        <url>https://github.com/GedMarc/GuicedServlets/issues</url>
+    </issueManagement>
+
+    <ciManagement>
+        <system>TeamCity</system>
+        <url>http://jwebmp.com/teamcity</url>
+    </ciManagement>
+</project>
