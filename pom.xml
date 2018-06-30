@@ -18,14 +18,6 @@
     </description>
     <url>https://github.com/GedMarc/GuicedServlets</url>
 
-    <repositories>
-        <repository>
-            <id>jwebmp-snapshot</id>
-            <name>JWebMPArtifactory-snapshots</name>
-            <url>https://jwebmp.com/artifactory/libs-snapshot</url>
-        </repository>
-    </repositories>
-
     <dependencies>
         <dependency>
             <groupId>com.jwebmp</groupId>
@@ -62,10 +54,11 @@
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
         </dependency>
+
     </dependencies>
 
     <scm>
-        <url>https://github.com/GedMarc/LogMaster.git</url>
+        <url>https://github.com/GedMarc/GuicedServlets.git</url>
     </scm>
 
     <issueManagement>
@@ -77,4 +70,5 @@
         <system>TeamCity</system>
         <url>http://jwebmp.com/teamcity</url>
     </ciManagement>
+
 </project>
