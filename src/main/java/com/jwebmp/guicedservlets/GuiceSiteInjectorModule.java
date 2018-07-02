@@ -160,10 +160,11 @@ public class GuiceSiteInjectorModule
 		                    {
 			                    try
 			                    {
-				                    GuiceSiteBinder obj = next.newInstance();
+				                    GuiceSiteBinder obj = next.getDeclaredConstructor()
+				                                              .newInstance();
 				                    objects.add(obj);
 			                    }
-			                    catch (InstantiationException | IllegalAccessException ex)
+			                    catch (Exception ex)
 			                    {
 				                    log.log(Level.SEVERE, "Couldn't load module from sets" + siteBinders.toString(), ex);
 			                    }
