@@ -38,6 +38,12 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+//formatter:off
+//formatter:on
+
+//formatter:off
+//formatter:on
+
 /**
  * Exposes the site injection modules for consumption
  *
