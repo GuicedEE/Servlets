@@ -23,6 +23,7 @@
             <groupId>com.jwebmp</groupId>
             <artifactId>guiced-injection</artifactId>
             <version>${project.version}</version>
+            <classifier>${jwebmp.runtime.classifier}</classifier>
         </dependency>
 
         <dependency>
