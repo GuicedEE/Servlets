@@ -28,6 +28,15 @@
         </dependency>
 
         <dependency>
+            <groupId>com.jwebmp</groupId>
+            <artifactId>jwebmp-log-master</artifactId>
+            <version>${project.version}</version>
+            <classifier>${jwebmp.runtime.classifier}</classifier>
+            <type>jar</type>
+        </dependency>
+
+
+        <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
         </dependency>
