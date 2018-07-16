@@ -6,6 +6,7 @@ module com.jwebmp.guicedservlets {
 	requires java.logging;
 	requires javax.servlet.api;
 	requires aopalliance;
+	requires java.validation;
 
 	exports com.jwebmp.guicedservlets;
 }

@@ -17,9 +17,7 @@
 package com.jwebmp.guicedservlets;
 
 import com.google.inject.*;
-//@formatter:off
 import com.google.inject.Module;
-//@formatter:on
 import com.google.inject.binder.AnnotatedBindingBuilder;
 import com.google.inject.binder.AnnotatedConstantBindingBuilder;
 import com.google.inject.binder.LinkedBindingBuilder;
@@ -41,6 +39,9 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+//@formatter:off
+//@formatter:on
+
 /**
  * Exposes the site injection modules for consumption
  *
@@ -48,7 +49,7 @@ import java.util.logging.Logger;
  * @since 12 Dec 2016
  */
 @GuiceInjectorModuleMarker
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "WeakerAccess"})
 public class GuiceSiteInjectorModule
 		extends ServletModule
 		implements Serializable
