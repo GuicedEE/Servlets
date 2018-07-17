@@ -1,7 +1,7 @@
 module com.jwebmp.guicedservlets {
-	requires com.google.guice.extensions.servlet;
-	requires com.jwebmp.guicedinjection;
-	requires com.jwebmp.logmaster;
+	requires transitive com.google.guice.extensions.servlet;
+	requires transitive com.jwebmp.guicedinjection;
+	requires transitive com.jwebmp.logmaster;
 	requires com.google.guice;
 	requires java.logging;
 	requires javax.servlet.api;
