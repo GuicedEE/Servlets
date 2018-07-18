@@ -9,4 +9,6 @@ module com.jwebmp.guicedservlets {
 	requires java.validation;
 
 	exports com.jwebmp.guicedservlets;
+
+	provides com.jwebmp.guicedinjection.scanners.PackageContentsScanner with com.jwebmp.guicedservlets.GuicedServletsPackageInclusions;
 }
