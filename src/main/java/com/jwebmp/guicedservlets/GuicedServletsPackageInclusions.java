@@ -1,12 +1,12 @@
 package com.jwebmp.guicedservlets;
 
-import com.jwebmp.guicedinjection.scanners.PackageContentsScanner;
+import com.jwebmp.guicedinjection.interfaces.IPackageContentsScanner;
 
 import java.util.HashSet;
 import java.util.Set;
 
 public class GuicedServletsPackageInclusions
-		implements PackageContentsScanner
+		implements IPackageContentsScanner
 {
 	@Override
 	public Set<String> searchFor()

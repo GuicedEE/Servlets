@@ -17,7 +17,6 @@
 package com.jwebmp.guicedservlets;
 
 import com.google.inject.*;
-import com.google.inject.Module;
 import com.google.inject.binder.AnnotatedBindingBuilder;
 import com.google.inject.binder.AnnotatedConstantBindingBuilder;
 import com.google.inject.binder.LinkedBindingBuilder;
@@ -25,17 +24,13 @@ import com.google.inject.matcher.Matcher;
 import com.google.inject.servlet.ServletModule;
 import com.google.inject.spi.ProvisionListener;
 import com.google.inject.spi.TypeListener;
-import com.jwebmp.guicedinjection.GuiceContext;
-import com.jwebmp.guicedinjection.Reflections;
-import com.jwebmp.guicedinjection.annotations.GuiceInjectorModuleMarker;
+import com.jwebmp.guicedinjection.interfaces.IGuiceModule;
+import com.jwebmp.guicedservlets.services.IGuiceSiteBinder;
 import com.jwebmp.logger.LogFactory;
 
-import java.io.Serializable;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.ServiceLoader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -48,11 +43,10 @@ import java.util.logging.Logger;
  * @author GedMarc
  * @since 12 Dec 2016
  */
-@GuiceInjectorModuleMarker
 @SuppressWarnings({"unused", "WeakerAccess"})
 public class GuiceSiteInjectorModule
 		extends ServletModule
-		implements Serializable
+		implements IGuiceModule
 {
 
 	private static final Logger log = LogFactory.getLog("GuiceSiteInjectorModule");
@@ -67,7 +61,7 @@ public class GuiceSiteInjectorModule
 
 	/**
 	 * Gets the current sort order, default 100
-	 *
+
 	 * @return the given sort order
 	 */
 	public int getSortOrder()
@@ -154,35 +148,15 @@ public class GuiceSiteInjectorModule
 	/**
 	 * Runs the binders for the system
 	 */
-	public void runBinders()
+	@SuppressWarnings("unchecked")
+	void runBinders()
 	{
-		Reflections reflections = GuiceContext.reflect();
-		Set<Class<? extends GuiceSiteBinder>> siteBinders = reflections.getSubTypesOf(GuiceSiteBinder.class);
-		log.log(Level.INFO, "Total number of site injectors - {0}", siteBinders.size());
-		List<GuiceSiteBinder> objects = new ArrayList<>();
-		siteBinders.forEach(next ->
-		                    {
-			                    try
-			                    {
-				                    GuiceSiteBinder obj = next.getDeclaredConstructor()
-				                                              .newInstance();
-				                    objects.add(obj);
-			                    }
-			                    catch (Exception ex)
-			                    {
-				                    log.log(Level.SEVERE, "Couldn't load module from sets" + siteBinders.toString(), ex);
-			                    }
-		                    });
-		if (!objects.isEmpty())
+		ServiceLoader<IGuiceSiteBinder> loader = ServiceLoader.load(IGuiceSiteBinder.class);
+		for (IGuiceSiteBinder siteBinder : loader)
 		{
-			objects.forEach(obj ->
-			                {
-				                log.log(Level.CONFIG, "Loading Guice Servlet Configuration {0}", obj.getClass()
-				                                                                                    .getSimpleName());
-				                obj.onBind(this);
-				                log.log(Level.FINE, "Loaded Guice Servlet Configuration {0}", obj.getClass()
-				                                                                                 .getSimpleName());
-			                });
+			log.log(Level.CONFIG, "Loading Site Injector - {0}", siteBinder.getClass()
+			                                                               .getCanonicalName());
+			siteBinder.onBind(this);
 		}
 	}
 
