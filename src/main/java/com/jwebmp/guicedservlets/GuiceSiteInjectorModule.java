@@ -17,7 +17,6 @@
 package com.jwebmp.guicedservlets;
 
 import com.google.inject.*;
-import com.google.inject.Module;
 import com.google.inject.binder.AnnotatedBindingBuilder;
 import com.google.inject.binder.AnnotatedConstantBindingBuilder;
 import com.google.inject.binder.LinkedBindingBuilder;
@@ -155,8 +154,8 @@ public class GuiceSiteInjectorModule
 		ServiceLoader<IGuiceSiteBinder> loader = ServiceLoader.load(IGuiceSiteBinder.class);
 		for (IGuiceSiteBinder siteBinder : loader)
 		{
-			log.log(Level.CONFIG, "Loading Site Injector - {0}", siteBinder.getClass()
-			                                                               .getCanonicalName());
+			log.log(Level.CONFIG, "Loading IGuiceSiteBinder - {0}", siteBinder.getClass()
+			                                                                  .getCanonicalName());
 			siteBinder.onBind(this);
 		}
 	}

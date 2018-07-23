@@ -1,7 +1,5 @@
 import com.jwebmp.guicedinjection.interfaces.IGuiceModule;
-import com.jwebmp.guicedinjection.interfaces.IPackageContentsScanner;
 import com.jwebmp.guicedservlets.GuiceSiteInjectorModule;
-import com.jwebmp.guicedservlets.GuicedServletsPackageInclusions;
 import com.jwebmp.guicedservlets.services.IGuiceSiteBinder;
 
 module com.jwebmp.guicedservlets {
@@ -18,6 +16,5 @@ module com.jwebmp.guicedservlets {
 	exports com.jwebmp.guicedservlets;
 	exports com.jwebmp.guicedservlets.services;
 
-	provides IPackageContentsScanner with GuicedServletsPackageInclusions;
 	provides IGuiceModule with GuiceSiteInjectorModule;
 }
