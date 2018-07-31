@@ -5,6 +5,9 @@ import com.google.inject.servlet.GuiceServletContextListener;
 import com.jwebmp.guicedinjection.GuiceContext;
 
 import javax.servlet.ServletContextEvent;
+import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Loads Guice Context into the servlet container as a listener
@@ -12,6 +15,7 @@ import javax.servlet.ServletContextEvent;
 public class GuicedServletContextListener
 		extends GuiceServletContextListener
 {
+
 	/**
 	 * Initializes Guice Context post Startup Beans
 	 *
@@ -21,6 +25,7 @@ public class GuicedServletContextListener
 	@Override
 	public void contextInitialized(ServletContextEvent servletContextEvent)
 	{
+		super.contextInitialized(servletContextEvent);
 		getInjector();
 	}
 
@@ -30,4 +35,9 @@ public class GuicedServletContextListener
 		return GuiceContext.inject();
 	}
 
+	@Override
+	public void contextDestroyed(ServletContextEvent servletContextEvent)
+	{
+		super.contextDestroyed(servletContextEvent);
+	}
 }

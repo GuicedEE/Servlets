@@ -25,6 +25,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <listener>
         <listener-class>com.jwebmp.guicedservlets.GuicedServletContextListener</listener-class>
     </listener>
+    <listener>
+        <listener-class>com.jwebmp.guicedservlets.GuicedServletSessionManager</listener-class>
+    </listener>
+
     <filter>
         <filter-name>guiceFilter</filter-name>
         <filter-class>com.google.inject.servlet.GuiceFilter</filter-class>
