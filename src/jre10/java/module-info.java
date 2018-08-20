@@ -1,4 +1,6 @@
 import com.jwebmp.guicedinjection.interfaces.IGuiceModule;
+import com.jwebmp.guicedinjection.interfaces.IGuicePreStartup;
+import com.jwebmp.guicedservlets.GuiceServletKeyStartup;
 import com.jwebmp.guicedservlets.GuiceSiteInjectorModule;
 import com.jwebmp.guicedservlets.services.IGuiceSiteBinder;
 
@@ -17,4 +19,6 @@ module com.jwebmp.guicedservlets {
 	exports com.jwebmp.guicedservlets.services;
 
 	provides IGuiceModule with GuiceSiteInjectorModule;
+	provides IGuicePreStartup with GuiceServletKeyStartup;
+
 }
