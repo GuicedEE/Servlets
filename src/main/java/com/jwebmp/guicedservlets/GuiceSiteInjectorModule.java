@@ -35,9 +35,6 @@ import java.util.ServiceLoader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-//@formatter:off
-//@formatter:on
-
 /**
  * Exposes the site injection modules for consumption
  *
@@ -53,32 +50,15 @@ public class GuiceSiteInjectorModule
 	private static final Logger log = LogFactory.getLog("GuiceSiteInjectorModule");
 	private static final long serialVersionUID = 1L;
 
-	private int sortOrder = 100;
-
 	public GuiceSiteInjectorModule()
 	{
 		//Nothing needed
 	}
 
-	/**
-	 * Gets the current sort order, default 100
-
-	 * @return the given sort order
-	 */
-	public int getSortOrder()
+	@Override
+	public Integer sortOrder()
 	{
-		return sortOrder;
-	}
-
-	/**
-	 * Sets the current sort order default 100
-	 *
-	 * @param sortOrder
-	 * 		the given sort order
-	 */
-	public void setSortOrder(int sortOrder)
-	{
-		this.sortOrder = sortOrder;
+		return 150;
 	}
 
 	/**
@@ -155,8 +135,8 @@ public class GuiceSiteInjectorModule
 		ServiceLoader<IGuiceSiteBinder> loader = ServiceLoader.load(IGuiceSiteBinder.class);
 		for (IGuiceSiteBinder siteBinder : loader)
 		{
-			log.log(Level.CONFIG, "Loading IGuiceSiteBinder - {0}", siteBinder.getClass()
-			                                                                  .getCanonicalName());
+			GuiceSiteInjectorModule.log.log(Level.CONFIG, "Loading IGuiceSiteBinder - {0}", siteBinder.getClass()
+			                                                                                          .getCanonicalName());
 			siteBinder.onBind(this);
 		}
 	}
