@@ -18,27 +18,27 @@ public class GuicedServletKeys
 	/**
 	 * The key to get the servlet context
 	 */
-	public static Key<ServletContext> ServletContextKey;
+	private static Key<ServletContext> ServletContextKey;
 	/**
 	 * The key to get the servlet request
 	 */
-	public static Key<HttpServletRequest> HttpServletRequestKey;
+	private static Key<HttpServletRequest> HttpServletRequestKey;
 	/**
 	 * The key to get the servlet response
 	 */
-	public static Key<HttpServletResponse> HttpServletResponseKey;
+	private static Key<HttpServletResponse> HttpServletResponseKey;
 	/**
 	 * The key to get the session
 	 */
-	public static Key<HttpSession> HttpSessionKey;
+	private static Key<HttpSession> HttpSessionKey;
 	/**
 	 * The key to get the servlet request
 	 */
-	public static Key<ServletRequest> ServletRequestKey;
+	private static Key<ServletRequest> ServletRequestKey;
 	/**
 	 * The key to get the servlet response
 	 */
-	public static Key<ServletResponse> ServletResponseKey;
+	private static Key<ServletResponse> ServletResponseKey;
 
 	/**
 	 * Does nothing but instantiate
