@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @SuppressWarnings("Convert2Diamond")
-class GuiceSiteInjectorModuleTest
+public class GuiceSiteInjectorModuleTest
 {
 	private static final Key<HttpServletRequest> HTTP_REQ_KEY = Key.get(HttpServletRequest.class);
 	private static final Key<HttpServletResponse> HTTP_RESP_KEY = Key.get(HttpServletResponse.class);
