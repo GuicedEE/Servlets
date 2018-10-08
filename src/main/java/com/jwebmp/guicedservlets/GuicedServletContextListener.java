@@ -30,6 +30,7 @@ public class GuicedServletContextListener
 	public void contextDestroyed(ServletContextEvent servletContextEvent)
 	{
 		super.contextDestroyed(servletContextEvent);
+		GuiceContext.destroy();
 	}
 
 	@Override
