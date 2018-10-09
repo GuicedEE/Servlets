@@ -53,7 +53,7 @@ public class GuicedServletKeys
 	 * <p>
 	 * The key to get the servlet context
 	 *
-	 * @return the ServletContextKey (type Key<ServletContext>) of this GuicedServletKeys object.
+	 * @return the ServletContextKey (type Key ServletContext ) of this GuicedServletKeys object.
 	 */
 	public static Key<ServletContext> getServletContextKey()
 	{
@@ -78,7 +78,7 @@ public class GuicedServletKeys
 	 * <p>
 	 * The key to get the servlet request
 	 *
-	 * @return the HttpServletRequestKey (type Key<HttpServletRequest>) of this GuicedServletKeys object.
+	 * @return the HttpServletRequestKey (type Key HttpServletRequest ) of this GuicedServletKeys object.
 	 */
 	public static Key<HttpServletRequest> getHttpServletRequestKey()
 	{
@@ -103,7 +103,7 @@ public class GuicedServletKeys
 	 * <p>
 	 * The key to get the servlet response
 	 *
-	 * @return the HttpServletResponseKey (type Key<HttpServletResponse>) of this GuicedServletKeys object.
+	 * @return the HttpServletResponseKey (type Key HttpServletResponse ) of this GuicedServletKeys object.
 	 */
 	public static Key<HttpServletResponse> getHttpServletResponseKey()
 	{
@@ -128,7 +128,7 @@ public class GuicedServletKeys
 	 * <p>
 	 * The key to get the session
 	 *
-	 * @return the HttpSessionKey (type Key<HttpSession>) of this GuicedServletKeys object.
+	 * @return the HttpSessionKey (type Key HttpSession ) of this GuicedServletKeys object.
 	 */
 	public static Key<HttpSession> getHttpSessionKey()
 	{
@@ -153,7 +153,7 @@ public class GuicedServletKeys
 	 * <p>
 	 * The key to get the servlet request
 	 *
-	 * @return the ServletRequestKey (type Key<ServletRequest>) of this GuicedServletKeys object.
+	 * @return the ServletRequestKey (type Key ServletRequest ) of this GuicedServletKeys object.
 	 */
 	public static Key<ServletRequest> getServletRequestKey()
 	{
@@ -178,7 +178,7 @@ public class GuicedServletKeys
 	 * <p>
 	 * The key to get the servlet response
 	 *
-	 * @return the ServletResponseKey (type Key<ServletResponse>) of this GuicedServletKeys object.
+	 * @return the ServletResponseKey (type Key ServletResponse ) of this GuicedServletKeys object.
 	 */
 	public static Key<ServletResponse> getServletResponseKey()
 	{
