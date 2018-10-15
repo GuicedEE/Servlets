@@ -5,10 +5,12 @@ import com.google.inject.servlet.GuiceServletContextListener;
 import com.jwebmp.guicedinjection.GuiceContext;
 
 import javax.servlet.ServletContextEvent;
+import javax.servlet.annotation.WebListener;
 
 /**
  * Loads Guice Context into the servlet container as a listener
  */
+@WebListener
 public class GuicedServletContextListener
 		extends GuiceServletContextListener
 {

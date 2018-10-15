@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class GuiceKeysOverride
-		implements IGuicePreStartup
+		implements IGuicePreStartup<GuiceKeysOverride>
 {
 	@Override
 	public void onStartup()

@@ -6,6 +6,7 @@ import com.jwebmp.guicedservlets.services.IGuiceSiteBinder;
 
 module com.jwebmp.guicedservlets {
 	uses IGuiceSiteBinder;
+
 	requires com.google.guice.extensions.servlet;
 	requires com.jwebmp.guicedinjection;
 	requires com.jwebmp.logmaster;

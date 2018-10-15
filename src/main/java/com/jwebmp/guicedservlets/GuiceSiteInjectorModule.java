@@ -25,6 +25,7 @@ import com.google.inject.matcher.Matcher;
 import com.google.inject.servlet.ServletModule;
 import com.google.inject.spi.ProvisionListener;
 import com.google.inject.spi.TypeListener;
+import com.jwebmp.guicedinjection.GuiceContext;
 import com.jwebmp.guicedinjection.interfaces.IGuiceModule;
 import com.jwebmp.guicedservlets.services.IGuiceSiteBinder;
 import com.jwebmp.logger.LogFactory;
@@ -32,6 +33,7 @@ import com.jwebmp.logger.LogFactory;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.ServiceLoader;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -44,17 +46,30 @@ import java.util.logging.Logger;
 @SuppressWarnings({"unused", "WeakerAccess"})
 public class GuiceSiteInjectorModule
 		extends ServletModule
-		implements IGuiceModule
+		implements IGuiceModule<GuiceSiteInjectorModule>
 {
-
+	/**
+	 * The logger
+	 */
 	private static final Logger log = LogFactory.getLog("GuiceSiteInjectorModule");
+	/**
+	 * Version Identifier
+	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Default Constructor
+	 */
 	public GuiceSiteInjectorModule()
 	{
 		//Nothing needed
 	}
 
+	/**
+	 * Default Sort Order 150
+	 *
+	 * @return 150
+	 */
 	@Override
 	public Integer sortOrder()
 	{
@@ -132,7 +147,8 @@ public class GuiceSiteInjectorModule
 	@SuppressWarnings("unchecked")
 	void runBinders()
 	{
-		ServiceLoader<IGuiceSiteBinder> loader = ServiceLoader.load(IGuiceSiteBinder.class);
+		Set<IGuiceSiteBinder> loader = GuiceContext.instance()
+		                                           .getLoader(IGuiceSiteBinder.class, true, ServiceLoader.load(IGuiceSiteBinder.class));
 		for (IGuiceSiteBinder siteBinder : loader)
 		{
 			GuiceSiteInjectorModule.log.log(Level.CONFIG, "Loading IGuiceSiteBinder - {0}", siteBinder.getClass()
