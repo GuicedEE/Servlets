@@ -24,6 +24,12 @@ public class GuicedServletSessionManager
 		return sessionMap;
 	}
 
+	/**
+	 * Method valueBound ...
+	 *
+	 * @param event
+	 * 		of type HttpSessionBindingEvent
+	 */
 	@Override
 	public void valueBound(HttpSessionBindingEvent event)
 	{
@@ -31,6 +37,12 @@ public class GuicedServletSessionManager
 		                    .getId(), event.getSession());
 	}
 
+	/**
+	 * Method valueUnbound ...
+	 *
+	 * @param event
+	 * 		of type HttpSessionBindingEvent
+	 */
 	@Override
 	public void valueUnbound(HttpSessionBindingEvent event)
 	{
@@ -38,6 +50,12 @@ public class GuicedServletSessionManager
 		                       .getId());
 	}
 
+	/**
+	 * Method sessionCreated ...
+	 *
+	 * @param se
+	 * 		of type HttpSessionEvent
+	 */
 	@Override
 	public void sessionCreated(HttpSessionEvent se)
 	{
@@ -45,6 +63,12 @@ public class GuicedServletSessionManager
 		                 .getId(), se.getSession());
 	}
 
+	/**
+	 * Method sessionDestroyed ...
+	 *
+	 * @param se
+	 * 		of type HttpSessionEvent
+	 */
 	@Override
 	public void sessionDestroyed(HttpSessionEvent se)
 	{

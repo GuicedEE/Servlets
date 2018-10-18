@@ -28,6 +28,12 @@ public class GuicedServletContextListener
 		getInjector();
 	}
 
+	/**
+	 * Method contextDestroyed ...
+	 *
+	 * @param servletContextEvent
+	 * 		of type ServletContextEvent
+	 */
 	@Override
 	public void contextDestroyed(ServletContextEvent servletContextEvent)
 	{
@@ -35,6 +41,11 @@ public class GuicedServletContextListener
 		GuiceContext.destroy();
 	}
 
+	/**
+	 * Method getInjector returns the injector of this GuicedServletContextListener object.
+	 *
+	 * @return the injector (type Injector) of this GuicedServletContextListener object.
+	 */
 	@Override
 	protected Injector getInjector()
 	{
