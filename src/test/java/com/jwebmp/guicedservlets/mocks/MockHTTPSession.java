@@ -91,26 +91,26 @@ public class MockHTTPSession
 	public long getCreationTime()
 	{
 		assertIsValid();
-		return this.creationTime;
+		return creationTime;
 	}
 
 	@Override
 	public String getId()
 	{
-		return this.id;
+		return id;
 	}
 
 	@Override
 	public long getLastAccessedTime()
 	{
 		assertIsValid();
-		return this.lastAccessedTime;
+		return lastAccessedTime;
 	}
 
 	@Override
 	public ServletContext getServletContext()
 	{
-		return this.servletContext;
+		return servletContext;
 	}
 
 	/**
@@ -130,7 +130,7 @@ public class MockHTTPSession
 
 	public boolean isInvalid()
 	{
-		return this.invalid;
+		return invalid;
 	}
 
 	/**
@@ -142,14 +142,14 @@ public class MockHTTPSession
 	 */
 	public String changeSessionId()
 	{
-		this.id = Integer.toString(MockHTTPSession.nextId++);
-		return this.id;
+		id = Integer.toString(MockHTTPSession.nextId++);
+		return id;
 	}
 
 	public void access()
 	{
-		this.lastAccessedTime = System.currentTimeMillis();
-		this.isNew = false;
+		lastAccessedTime = System.currentTimeMillis();
+		isNew = false;
 	}
 
 	/**
@@ -160,9 +160,9 @@ public class MockHTTPSession
 	 */
 	public Serializable serializeState()
 	{
-		HashMap<String, Serializable> state = new HashMap<>();
-		for (Iterator<Map.Entry<String, Object>> it = this.attributes.entrySet()
-		                                                             .iterator(); it.hasNext(); )
+		HashMap<String, Object> state = new HashMap<>();
+		for (Iterator<Map.Entry<String, Object>> it = attributes.entrySet()
+		                                                        .iterator(); it.hasNext(); )
 		{
 			Map.Entry<String, Object> entry = it.next();
 			String name = entry.getKey();
@@ -170,7 +170,7 @@ public class MockHTTPSession
 			it.remove();
 			if (value instanceof Serializable)
 			{
-				state.put(name, (Serializable) value);
+				state.put(name, value);
 			}
 			else
 			{
@@ -195,19 +195,19 @@ public class MockHTTPSession
 	@SuppressWarnings("unchecked")
 	public void deserializeState(Serializable state)
 	{
-		this.attributes.putAll((Map<String, Object>) state);
+		attributes.putAll((Map<String, Object>) state);
 	}
 
 	@Override
 	public void setMaxInactiveInterval(int interval)
 	{
-		this.maxInactiveInterval = interval;
+		maxInactiveInterval = interval;
 	}
 
 	@Override
 	public int getMaxInactiveInterval()
 	{
-		return this.maxInactiveInterval;
+		return maxInactiveInterval;
 	}
 
 	@Override
@@ -220,7 +220,7 @@ public class MockHTTPSession
 	public Object getAttribute(String name)
 	{
 		assertIsValid();
-		return this.attributes.get(name);
+		return attributes.get(name);
 	}
 
 	@Override
@@ -233,15 +233,15 @@ public class MockHTTPSession
 	public Enumeration<String> getAttributeNames()
 	{
 		assertIsValid();
-		return Collections.enumeration(new LinkedHashSet<String>(this.attributes.keySet()));
+		return Collections.enumeration(new LinkedHashSet<String>(attributes.keySet()));
 	}
 
 	@Override
 	public String[] getValueNames()
 	{
 		assertIsValid();
-		return this.attributes.keySet()
-		                      .toArray(new String[this.attributes.size()]);
+		return attributes.keySet()
+		                 .toArray(new String[attributes.size()]);
 	}
 
 	@Override
@@ -250,7 +250,7 @@ public class MockHTTPSession
 		assertIsValid();
 		if (value != null)
 		{
-			this.attributes.put(name, value);
+			attributes.put(name, value);
 			if (value instanceof HttpSessionBindingListener)
 			{
 				((HttpSessionBindingListener) value).valueBound(new HttpSessionBindingEvent(this, name, value));
@@ -272,7 +272,7 @@ public class MockHTTPSession
 	public void removeAttribute(String name)
 	{
 		assertIsValid();
-		Object value = this.attributes.remove(name);
+		Object value = attributes.remove(name);
 		if (value instanceof HttpSessionBindingListener)
 		{
 			((HttpSessionBindingListener) value).valueUnbound(new HttpSessionBindingEvent(this, name, value));
@@ -290,8 +290,8 @@ public class MockHTTPSession
 	 */
 	public void clearAttributes()
 	{
-		for (Iterator<Map.Entry<String, Object>> it = this.attributes.entrySet()
-		                                                             .iterator(); it.hasNext(); )
+		for (Iterator<Map.Entry<String, Object>> it = attributes.entrySet()
+		                                                        .iterator(); it.hasNext(); )
 		{
 			Map.Entry<String, Object> entry = it.next();
 			String name = entry.getKey();
@@ -314,20 +314,20 @@ public class MockHTTPSession
 	public void invalidate()
 	{
 		assertIsValid();
-		this.invalid = true;
+		invalid = true;
 		clearAttributes();
 	}
 
 	public void setNew(boolean value)
 	{
-		this.isNew = value;
+		isNew = value;
 	}
 
 	@Override
 	public boolean isNew()
 	{
 		assertIsValid();
-		return this.isNew;
+		return isNew;
 	}
 
 }

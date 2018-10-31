@@ -55,7 +55,7 @@ public class GuiceSiteInjectorModule
 	/**
 	 * Version Identifier
 	 */
-	private static final long serialVersionUID = 1L;
+
 
 	/**
 	 * Default Constructor
