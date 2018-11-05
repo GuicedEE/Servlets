@@ -4,6 +4,7 @@ import com.jwebmp.guicedservlets.mocks.MockHTTPSession;
 import com.jwebmp.guicedservlets.mocks.MockRequest;
 import com.jwebmp.guicedservlets.mocks.MockResponse;
 import com.jwebmp.guicedservlets.mocks.MockServletContext;
+import com.jwebmp.guicedservlets.services.GuiceSiteInjectorModule;
 import com.jwebmp.guicedservlets.services.IGuiceSiteBinder;
 
 public class ServletTestBindings

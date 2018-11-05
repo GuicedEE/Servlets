@@ -5,6 +5,9 @@ import javax.servlet.http.*;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * A listener for current sessions
+ */
 @WebListener
 public class GuicedServletSessionManager
 		implements HttpSessionBindingListener, HttpSessionListener
@@ -17,7 +20,7 @@ public class GuicedServletSessionManager
 	/**
 	 * Returns a map of all the currently allocated sessions
 	 *
-	 * @return
+	 * @return A map of string and http sessions
 	 */
 	public static Map<String, HttpSession> getSessionMap()
 	{

@@ -1,7 +1,6 @@
 package com.jwebmp.guicedservlets.services;
 
 import com.jwebmp.guicedinjection.interfaces.IDefaultBinder;
-import com.jwebmp.guicedservlets.GuiceSiteInjectorModule;
 
 import javax.validation.constraints.NotNull;
 import java.util.Comparator;
@@ -9,6 +8,7 @@ import java.util.Comparator;
 public interface IGuiceSiteBinder<M extends GuiceSiteInjectorModule>
 		extends Comparable<IGuiceSiteBinder>, Comparator<IGuiceSiteBinder>, IDefaultBinder<M>
 {
+	@Override
 	default int compare(IGuiceSiteBinder o1, IGuiceSiteBinder o2)
 	{
 		if (o1 == null || o2 == null)
@@ -24,6 +24,7 @@ public interface IGuiceSiteBinder<M extends GuiceSiteInjectorModule>
 		return 100;
 	}
 
+	@Override
 	default int compareTo(@NotNull IGuiceSiteBinder o)
 	{
 		int sort = sortOrder().compareTo(o.sortOrder());

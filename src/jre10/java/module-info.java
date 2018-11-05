@@ -1,7 +1,10 @@
 import com.jwebmp.guicedinjection.interfaces.IGuiceModule;
 import com.jwebmp.guicedinjection.interfaces.IGuicePreStartup;
-import com.jwebmp.guicedservlets.GuiceServletKeyStartup;
-import com.jwebmp.guicedservlets.GuiceSiteInjectorModule;
+import com.jwebmp.guicedinjection.interfaces.IGuiceScanJarExclusions;
+import com.jwebmp.guicedinjection.interfaces.IGuiceScanModuleExclusions;
+import com.jwebmp.guicedservlets.implementations.GuiceServletKeyStartup;
+import com.jwebmp.guicedservlets.implementations.GuicedServletModuleExclusions;
+import com.jwebmp.guicedservlets.services.GuiceSiteInjectorModule;
 import com.jwebmp.guicedservlets.services.IGuiceSiteBinder;
 
 module com.jwebmp.guicedservlets {
@@ -19,7 +22,11 @@ module com.jwebmp.guicedservlets {
 	exports com.jwebmp.guicedservlets;
 	exports com.jwebmp.guicedservlets.services;
 
+
 	provides IGuiceModule with GuiceSiteInjectorModule;
 	provides IGuicePreStartup with GuiceServletKeyStartup;
+
+	provides IGuiceScanModuleExclusions with GuicedServletModuleExclusions;
+	provides IGuiceScanJarExclusions with GuicedServletModuleExclusions;
 
 }

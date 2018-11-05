@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.jwebmp.guicedservlets;
+package com.jwebmp.guicedservlets.services;
 
 import com.google.inject.*;
 import com.google.inject.Module;
@@ -27,7 +27,6 @@ import com.google.inject.spi.ProvisionListener;
 import com.google.inject.spi.TypeListener;
 import com.jwebmp.guicedinjection.GuiceContext;
 import com.jwebmp.guicedinjection.interfaces.IGuiceModule;
-import com.jwebmp.guicedservlets.services.IGuiceSiteBinder;
 import com.jwebmp.logger.LogFactory;
 
 import java.lang.annotation.Annotation;

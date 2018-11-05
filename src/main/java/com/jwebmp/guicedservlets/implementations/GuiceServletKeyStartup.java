@@ -1,7 +1,8 @@
-package com.jwebmp.guicedservlets;
+package com.jwebmp.guicedservlets.implementations;
 
 import com.google.inject.Key;
 import com.jwebmp.guicedinjection.interfaces.IGuicePreStartup;
+import com.jwebmp.guicedservlets.GuicedServletKeys;
 import com.jwebmp.logger.LogFactory;
 
 import javax.servlet.ServletContext;
