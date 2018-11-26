@@ -51,10 +51,6 @@ public class GuiceSiteInjectorModule
 	 * The logger
 	 */
 	private static final Logger log = LogFactory.getLog("GuiceSiteInjectorModule");
-	/**
-	 * Version Identifier
-	 */
-
 
 	/**
 	 * Default Constructor
