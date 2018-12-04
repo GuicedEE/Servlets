@@ -35,10 +35,23 @@
         </dependency>
 
         <dependency>
-            <groupId>com.google.inject.extensions</groupId>
+            <groupId>com.jwebmp.inject.extensions</groupId>
             <artifactId>guice-servlet</artifactId>
+            <version>${project.version}</version>
+            <classifier>${jwebmp.runtime.classifier}</classifier>
+            <!--<optional>true</optional>-->
             <type>jar</type>
         </dependency>
+
+        <dependency>
+            <groupId>com.jwebmp</groupId>
+            <artifactId>guiced-servlets</artifactId>
+            <version>${project.version}</version>
+            <classifier>${jwebmp.runtime.classifier}</classifier>
+            <!--<optional>true</optional>-->
+            <type>jar</type>
+        </dependency>
+
 
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -65,8 +78,9 @@
         </dependency>
 
         <dependency>
-            <groupId>commons-io</groupId>
+            <groupId>com.jwebmp</groupId>
             <artifactId>commons-io</artifactId>
+            <version>${project.version}</version>
             <scope>test</scope>
             <type>jar</type>
         </dependency>
