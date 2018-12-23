@@ -127,6 +127,12 @@ public class GuiceSiteInjectorModule
 		return serveRegex(regexes);
 	}
 
+	@Override
+	public Binder binder()
+	{
+		return super.binder();
+	}
+
 	/**
 	 * Runs the binders
 	 */
