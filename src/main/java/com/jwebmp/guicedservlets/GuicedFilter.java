@@ -14,7 +14,6 @@ import java.io.IOException;
 public class GuicedFilter
 		extends GuiceFilter
 {
-
 	/**
 	 * Constructor GuicedFilter creates a new GuicedFilter instance.
 	 */

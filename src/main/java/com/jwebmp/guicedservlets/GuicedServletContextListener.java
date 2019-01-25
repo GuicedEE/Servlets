@@ -6,6 +6,7 @@ import com.jwebmp.guicedinjection.GuiceContext;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.annotation.WebListener;
+import java.util.Collections;
 
 /**
  * Loads Guice Context into the servlet container as a listener
@@ -14,6 +15,10 @@ import javax.servlet.annotation.WebListener;
 public class GuicedServletContextListener
 		extends GuiceServletContextListener
 {
+	/**
+	 * Disables the cookies, great for new apps
+	 */
+	public static boolean disableCookies = true;
 
 	/**
 	 * Initializes Guice Context post Startup Beans
@@ -24,6 +29,11 @@ public class GuicedServletContextListener
 	@Override
 	public void contextInitialized(ServletContextEvent servletContextEvent)
 	{
+		if (disableCookies)
+		{
+			servletContextEvent.getServletContext()
+			                   .setSessionTrackingModes(Collections.emptySet());
+		}
 		super.contextInitialized(servletContextEvent);
 		getInjector();
 	}
