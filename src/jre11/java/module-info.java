@@ -1,14 +1,5 @@
-import com.jwebmp.guicedinjection.interfaces.IGuiceModule;
-import com.jwebmp.guicedinjection.interfaces.IGuicePreStartup;
-import com.jwebmp.guicedinjection.interfaces.IGuiceScanJarExclusions;
-import com.jwebmp.guicedinjection.interfaces.IGuiceScanModuleExclusions;
-import com.jwebmp.guicedservlets.implementations.GuiceServletKeyStartup;
-import com.jwebmp.guicedservlets.implementations.GuicedServletModuleExclusions;
-import com.jwebmp.guicedservlets.services.GuiceSiteInjectorModule;
-import com.jwebmp.guicedservlets.services.IGuiceSiteBinder;
-
 module com.jwebmp.guicedservlets {
-	uses IGuiceSiteBinder;
+	uses com.jwebmp.guicedservlets.services.IGuiceSiteBinder;
 
 	requires transitive com.google.guice.extensions.servlet;
 	requires transitive com.jwebmp.guicedinjection;
@@ -24,10 +15,10 @@ module com.jwebmp.guicedservlets {
 	exports com.jwebmp.guicedservlets.services;
 
 
-	provides IGuiceModule with GuiceSiteInjectorModule;
-	provides IGuicePreStartup with GuiceServletKeyStartup;
+	provides com.jwebmp.guicedinjection.interfaces.IGuiceModule with com.jwebmp.guicedservlets.services.GuiceSiteInjectorModule;
+	provides com.jwebmp.guicedinjection.interfaces.IGuicePreStartup with com.jwebmp.guicedservlets.implementations.GuiceServletKeyStartup;
 
-	provides IGuiceScanModuleExclusions with GuicedServletModuleExclusions;
-	provides IGuiceScanJarExclusions with GuicedServletModuleExclusions;
+	provides com.jwebmp.guicedinjection.interfaces.IGuiceScanModuleExclusions with com.jwebmp.guicedservlets.implementations.GuicedServletModuleExclusions;
+	provides com.jwebmp.guicedinjection.interfaces.IGuiceScanJarExclusions with com.jwebmp.guicedservlets.implementations.GuicedServletModuleExclusions;
 
 }
