@@ -36,10 +36,10 @@ public class GuiceSiteInjectorModuleTest
 		ServletScopes.scopeRequest(new HashMap<>())
 		             .open();
 
-		RequestScopedObject obj = GuiceContext.getInstance(RequestScopedObject.class);
-		BasicServlet servlet = GuiceContext.getInstance(BasicServlet.class);
+		RequestScopedObject obj = GuiceContext.get(RequestScopedObject.class);
+		BasicServlet servlet = GuiceContext.get(BasicServlet.class);
 
-		HttpServletResponse resp = GuiceContext.getInstance(GuicedServletKeys.getHttpServletResponseKey());
+		HttpServletResponse resp = GuiceContext.get(GuicedServletKeys.getHttpServletResponseKey());
 
 		System.out.println(obj);
 	}
