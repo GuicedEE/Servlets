@@ -35,11 +35,6 @@
         </dependency>
 
         <dependency>
-            <groupId>com.jwebmp.guicedee</groupId>
-            <artifactId>guiced-injection</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
         </dependency>
