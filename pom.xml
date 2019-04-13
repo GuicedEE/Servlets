@@ -25,6 +25,21 @@
         </dependency>
 
         <dependency>
+            <groupId>com.jwebmp.thirdparty</groupId>
+            <artifactId>aopalliance-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.jwebmp.guicedee</groupId>
+            <artifactId>guiced-log-master</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.jwebmp.guicedee</groupId>
+            <artifactId>guiced-injection</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
         </dependency>
