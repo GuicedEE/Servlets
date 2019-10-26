@@ -6,7 +6,6 @@ import com.google.inject.servlet.ServletScopes;
 import com.guicedee.guicedinjection.GuiceContext;
 import org.junit.jupiter.api.Test;
 
-import javax.servlet.FilterChain;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
@@ -19,19 +18,10 @@ public class GuiceSiteInjectorModuleTest
 	private static final Key<HttpServletResponse> HTTP_RESP_KEY = Key.get(HttpServletResponse.class);
 	private static final Key<Map<String, String[]>> REQ_PARAMS_KEY = new Key<Map<String, String[]>>(RequestParameters.class) {};
 
-	/**
-	 * Returns a FilterChain that does nothing.
-	 */
-	public static FilterChain newNoOpFilterChain()
-	{
-		return (request, response) ->
-		{
-		};
-	}
-
 	@Test
 	void testFakeRequestScope()
 	{
+		com.guicedee.logger.LogFactory.setDefaultLevel(java.util.logging.Level.FINE);
 		GuiceContext.inject();
 		ServletScopes.scopeRequest(new HashMap<>())
 		             .open();
