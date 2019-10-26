@@ -3,13 +3,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
                       https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <parent>
-        <groupId>com.guicedee.servlets</groupId>
-        <artifactId>servlets-parent</artifactId>
+        <groupId>com.guicedee</groupId>
+        <artifactId>guicedee-projects</artifactId>
         <version>0.0.0_0-SNAPSHOT</version>
     </parent>
 
+    <groupId>com.guicedee.servlets</groupId>
     <artifactId>guiced-servlets</artifactId>
     <packaging>jar</packaging>
 
@@ -23,63 +23,38 @@
             <groupId>com.guicedee</groupId>
             <artifactId>guiced-injection</artifactId>
             <type>jar</type>
-                    </dependency>
+        </dependency>
 
         <dependency>
-            <groupId>com.jwebmp.jpms.thirdparty</groupId>
+            <groupId>com.guicedee.services.extensions</groupId>
             <artifactId>guice-servlet</artifactId>
             <type>jar</type>
-                    </dependency>
-
+        </dependency>
 
         <dependency>
-            <groupId>com.jwebmp.jpms.thirdparty</groupId>
+            <groupId>com.guicedee.services</groupId>
             <artifactId>aopalliance-core</artifactId>
             <type>jar</type>
-                    </dependency>
+        </dependency>
 
         <dependency>
             <groupId>com.guicedee</groupId>
             <artifactId>guiced-log-master</artifactId>
             <type>jar</type>
-                    </dependency>
+        </dependency>
 
         <dependency>
-            <groupId>com.jwebmp.jpms.thirdparty</groupId>
+            <groupId>com.guicedee.services</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <type>jar</type>
-                    </dependency>
-
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <type>jar</type>
         </dependency>
 
         <dependency>
-            <groupId>org.hamcrest</groupId>
-            <artifactId>hamcrest-all</artifactId>
-            <type>jar</type>
-        </dependency>
-
-        <dependency>
-            <groupId>org.assertj</groupId>
-            <artifactId>assertj-core</artifactId>
-            <type>jar</type>
-        </dependency>
-
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-core</artifactId>
-            <type>jar</type>
-        </dependency>
-
-        <dependency>
-            <groupId>com.jwebmp.jpms.thirdparty</groupId>
+            <groupId>com.guicedee.services</groupId>
             <artifactId>commons-io</artifactId>
             <scope>test</scope>
             <type>jar</type>
-                    </dependency>
+        </dependency>
 
     </dependencies>
 
