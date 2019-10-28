@@ -27,7 +27,7 @@ public class GuicedServletModuleExclusions
 	public @NotNull Set<String> excludeModules()
 	{
 		Set<String> strings = new HashSet<>();
-		strings.add("com.jwebmp.guicedservlets");
+		strings.add("com.guicedee.guicedservlets");
 
 
 		strings.add("com.google.guice.extensions.servlet");
