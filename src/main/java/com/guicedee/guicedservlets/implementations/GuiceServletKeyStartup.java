@@ -21,18 +21,24 @@ public class GuiceServletKeyStartup
 	@Override
 	public void onStartup()
 	{
-		GuicedServletKeys.setHttpServletRequestKey(Key.get(HttpServletRequest.class));
-		GuicedServletKeys.setHttpServletResponseKey(Key.get(HttpServletResponse.class));
-		GuicedServletKeys.setHttpSessionKey(Key.get(HttpSession.class));
-		GuicedServletKeys.setServletContextKey(Key.get(ServletContext.class));
-		GuicedServletKeys.setServletRequestKey(Key.get(ServletRequest.class));
-		GuicedServletKeys.setServletResponseKey(Key.get(ServletResponse.class));
+		try
+		{
+			GuicedServletKeys.setHttpServletRequestKey(Key.get(HttpServletRequest.class));
+			GuicedServletKeys.setHttpServletResponseKey(Key.get(HttpServletResponse.class));
+			GuicedServletKeys.setHttpSessionKey(Key.get(HttpSession.class));
+			GuicedServletKeys.setServletContextKey(Key.get(ServletContext.class));
+			GuicedServletKeys.setServletRequestKey(Key.get(ServletRequest.class));
+			GuicedServletKeys.setServletResponseKey(Key.get(ServletResponse.class));
 
-		log.fine("Bound HttpServletResponse Key");
-		log.fine("Bound HttpServletRequest Key");
-		log.fine("Bound HttpSession Key");
-		log.fine("Bound ServletContext Key");
-		log.fine("Bound ServletRequest Key");
-		log.fine("Bound ServletResponse Key");
+			log.fine("Bound HttpServletResponse Key");
+			log.fine("Bound HttpServletRequest Key");
+			log.fine("Bound HttpSession Key");
+			log.fine("Bound ServletContext Key");
+			log.fine("Bound ServletRequest Key");
+			log.fine("Bound ServletResponse Key");
+		}catch(Throwable T)
+		{
+			log.warning("Unable to start servlet structure");
+		}
 	}
 }

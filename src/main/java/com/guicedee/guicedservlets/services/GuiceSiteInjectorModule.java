@@ -239,7 +239,15 @@ public class GuiceSiteInjectorModule
 	@Override
 	public void install(Module module)
 	{
-		super.install(module);
+		try
+		{
+			super.install(module);
+		}catch(Throwable T)
+		{
+			log.warning("Unable to install servlet guice module - " +
+			            module.getClass()
+			                  .getCanonicalName());
+		}
 	}
 
 	/**
