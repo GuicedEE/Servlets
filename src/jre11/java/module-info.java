@@ -4,11 +4,11 @@ module com.guicedee.guicedservlets {
 
 	requires transitive com.google.guice.extensions.servlet;
 	requires transitive com.guicedee.guicedinjection;
-	requires transitive javax.servlet.api;
+	requires transitive java.servlet;
 
 	requires java.logging;
 
-	requires java.validation;
+	requires transitive java.validation;
 
 	exports com.guicedee.guicedservlets;
 	exports com.guicedee.guicedservlets.services;

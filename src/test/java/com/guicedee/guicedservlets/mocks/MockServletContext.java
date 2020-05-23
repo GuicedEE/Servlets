@@ -29,17 +29,17 @@ public class MockServletContext
 	/**
 	 * Map of attributes.
 	 */
-	private final Map<String, Object> attributes = new HashMap<String, Object>();
+	private final Map<String, Object> attributes = new HashMap<>();
 
 	/**
 	 * Map of initialization parameters.
 	 */
-	private final Map<String, String> initParameters = new HashMap<String, String>();
+	private final Map<String, String> initParameters = new HashMap<>();
 
 	/**
 	 * Map of mime types.
 	 */
-	private final Map<String, String> mimeTypes = new HashMap<String, String>();
+	private final Map<String, String> mimeTypes = new HashMap<>();
 
 	/**
 	 * The context temporary path.
@@ -107,8 +107,8 @@ public class MockServletContext
 		//Setup temp path, before webapp path, since setWebappPath() will
 		//default tempPath to java.io.tmpdir if tempPath does not have a value
 		//yet
-		this.setTempPath(tempPath);
-		this.setWebappPath(webappPath);
+		setTempPath(tempPath);
+		setWebappPath(webappPath);
 
 		mimeTypes.put("html", "text/html");
 		mimeTypes.put("htm", "text/html");
@@ -524,7 +524,7 @@ public class MockServletContext
 		}
 		if (webappRoot == null)
 		{
-			return new HashSet<String>();
+			return new HashSet<>();
 		}
 
 		name = name.substring(1);
@@ -568,7 +568,7 @@ public class MockServletContext
 
 		//List of resources in the matching path
 		File[] files = current.listFiles();
-		Set<String> result = new HashSet<String>();
+		Set<String> result = new HashSet<>();
 		int stripLength = webappRoot.getPath()
 		                            .length();
 		for (int f = 0; f < files.length; f++)
@@ -934,6 +934,12 @@ public class MockServletContext
 	}
 
 	@Override
+	public ServletRegistration.Dynamic addJspFile(String servletName, String jspFile)
+	{
+		return null;
+	}
+
+	@Override
 	public <T extends Servlet> T createServlet(Class<T> clazz) throws ServletException
 	{
 		return null;
@@ -1057,6 +1063,42 @@ public class MockServletContext
 	public String getVirtualServerName()
 	{
 		return null;
+	}
+
+	@Override
+	public int getSessionTimeout()
+	{
+		return 0;
+	}
+
+	@Override
+	public void setSessionTimeout(int sessionTimeout)
+	{
+
+	}
+
+	@Override
+	public String getRequestCharacterEncoding()
+	{
+		return null;
+	}
+
+	@Override
+	public void setRequestCharacterEncoding(String encoding)
+	{
+
+	}
+
+	@Override
+	public String getResponseCharacterEncoding()
+	{
+		return null;
+	}
+
+	@Override
+	public void setResponseCharacterEncoding(String encoding)
+	{
+
 	}
 
 	/**
