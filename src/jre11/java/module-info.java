@@ -6,8 +6,6 @@ module com.guicedee.guicedservlets {
 	requires transitive com.guicedee.guicedinjection;
 	requires transitive java.servlet;
 
-	requires java.logging;
-
 	requires transitive java.validation;
 
 	exports com.guicedee.guicedservlets;
