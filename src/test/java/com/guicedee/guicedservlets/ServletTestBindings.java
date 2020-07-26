@@ -13,9 +13,6 @@ public class ServletTestBindings
 	@Override
 	public void onBind(GuiceSiteInjectorModule module)
 	{
-		module.serveRegex$("/sitetest")
-		      .with(BasicServlet.class);
-
 		module.bind(GuicedServletKeys.getHttpSessionKey())
 		      .to(MockHTTPSession.class);
 		module.bind(GuicedServletKeys.getServletRequestKey())
