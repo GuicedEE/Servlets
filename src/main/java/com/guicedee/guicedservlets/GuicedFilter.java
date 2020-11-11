@@ -2,8 +2,8 @@ package com.guicedee.guicedservlets;
 
 import com.google.inject.servlet.GuiceFilter;
 
-import javax.servlet.*;
-import javax.servlet.annotation.WebFilter;
+import jakarta.servlet.*;
+import jakarta.servlet.annotation.WebFilter;
 import java.io.IOException;
 
 /**

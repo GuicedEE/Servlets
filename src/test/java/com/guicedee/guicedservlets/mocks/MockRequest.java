@@ -3,8 +3,8 @@ package com.guicedee.guicedservlets.mocks;
 import com.google.common.hash.Hashing;
 import org.apache.commons.io.IOUtils;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
+import jakarta.servlet.*;
+import jakarta.servlet.http.*;
 import java.io.*;
 import java.net.URLEncoder;
 import java.security.Principal;
@@ -1407,7 +1407,7 @@ public class MockRequest
 	 *
 	 * @return The path value
 	 *
-	 * @see javax.servlet.http.HttpServletRequest#getRequestURI()
+	 * @see jakarta.servlet.http.HttpServletRequest#getRequestURI()
 	 */
 	@Override
 	public String getRequestURI()

@@ -1,9 +1,9 @@
 package com.guicedee.guicedservlets.mocks;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
 import java.io.IOException;
 
 public class MockRequestDispatcher
@@ -38,7 +38,7 @@ public class MockRequestDispatcher
 	 * @param response
 	 * 		the servlet response
 	 *
-	 * @throws javax.servlet.ServletException
+	 * @throws jakarta.servlet.ServletException
 	 * 		if the response was already
 	 * 		committed
 	 * @throws java.io.IOException
@@ -62,7 +62,7 @@ public class MockRequestDispatcher
 	 * @param response
 	 * 		the servlet response
 	 *
-	 * @throws javax.servlet.ServletException
+	 * @throws jakarta.servlet.ServletException
 	 * 		if the response was already
 	 * 		committed
 	 * @throws java.io.IOException

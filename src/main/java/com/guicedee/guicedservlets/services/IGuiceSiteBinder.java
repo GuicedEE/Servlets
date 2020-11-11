@@ -2,7 +2,7 @@ package com.guicedee.guicedservlets.services;
 
 import com.guicedee.guicedinjection.interfaces.IDefaultBinder;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 import java.util.Comparator;
 
 public interface IGuiceSiteBinder<M extends GuiceSiteInjectorModule>

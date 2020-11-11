@@ -2,7 +2,7 @@ package com.guicedee.guicedservlets.implementations;
 
 import com.guicedee.guicedinjection.interfaces.IGuiceScanModuleExclusions;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,7 +21,7 @@ public class GuicedServletModuleExclusions
 		strings.add("com.guicedee.logmaster");
 		strings.add("com.google.guice");
 		strings.add("java.logging");
-		strings.add("javax.servlet.api");
+		strings.add("jakarta.servlet.api");
 		strings.add("aopalliance");
 		strings.add("java.validation");
 

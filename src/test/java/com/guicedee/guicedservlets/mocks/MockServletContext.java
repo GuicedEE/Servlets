@@ -2,8 +2,8 @@ package com.guicedee.guicedservlets.mocks;
 
 import org.junit.platform.commons.util.StringUtils;
 
-import javax.servlet.*;
-import javax.servlet.descriptor.JspConfigDescriptor;
+import jakarta.servlet.*;
+import jakarta.servlet.descriptor.JspConfigDescriptor;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -90,7 +90,7 @@ public class MockServletContext
 	 * up a temporary work directory for things like file uploads.
 	 * <p/>
 	 * <b>Note</b> this temporary work directory is set as the value of the
-	 * ServletContext attribute 'javax.servlet.context.tempdir'.
+	 * ServletContext attribute 'jakarta.servlet.context.tempdir'.
 	 *
 	 * @param contextPath
 	 * 		the servlet context path
@@ -304,7 +304,7 @@ public class MockServletContext
 	 * up a temporary work directory for things like file uploads.
 	 * <p/>
 	 * <b>Note</b> this temporary work directory is set as the value of the
-	 * ServletContext attribute 'javax.servlet.context.tempdir'.
+	 * ServletContext attribute 'jakarta.servlet.context.tempdir'.
 	 * <p/>
 	 * The temporary work directory defaults to
 	 * System.getProperty("java.io.tmpdir").

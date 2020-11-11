@@ -1,7 +1,7 @@
 package com.guicedee.guicedservlets;
 
-import javax.servlet.annotation.WebListener;
-import javax.servlet.http.*;
+import jakarta.servlet.annotation.WebListener;
+import jakarta.servlet.http.*;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 

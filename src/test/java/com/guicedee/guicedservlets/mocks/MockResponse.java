@@ -1,9 +1,9 @@
 package com.guicedee.guicedservlets.mocks;
 
-import javax.servlet.ServletOutputStream;
-import javax.servlet.WriteListener;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletOutputStream;
+import jakarta.servlet.WriteListener;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -66,7 +66,7 @@ public class MockResponse
 	private String characterEncoding = "UTF-8";
 	/**
 	 * The response code, defaults to
-	 * {@link javax.servlet.http.HttpServletResponse#SC_OK}.
+	 * {@link jakarta.servlet.http.HttpServletResponse#SC_OK}.
 	 */
 	private int code = HttpServletResponse.SC_OK;
 	/**
@@ -100,7 +100,7 @@ public class MockResponse
 
 	/**
 	 * The response status, defaults to
-	 * {@link javax.servlet.http.HttpServletResponse#SC_OK}.
+	 * {@link jakarta.servlet.http.HttpServletResponse#SC_OK}.
 	 */
 	private int status = HttpServletResponse.SC_OK;
 

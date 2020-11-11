@@ -380,7 +380,7 @@ public class GuiceSiteInjectorModule
 	 *
 	 * @return The given servlet context
 	 */
-	public javax.servlet.ServletContext getServletContext$()
+	public jakarta.servlet.ServletContext getServletContext$()
 	{
 		return super.getServletContext();
 	}
