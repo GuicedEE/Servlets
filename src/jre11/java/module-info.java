@@ -6,7 +6,7 @@ module com.guicedee.guicedservlets {
 	requires transitive com.guicedee.guicedinjection;
 	requires transitive java.servlet;
 
-	requires transitive java.validation;
+	requires transitive jakarta.validation;
 
 	exports com.guicedee.guicedservlets;
 	exports com.guicedee.guicedservlets.services;
