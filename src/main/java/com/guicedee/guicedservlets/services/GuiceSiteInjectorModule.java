@@ -17,15 +17,24 @@
 package com.guicedee.guicedservlets.services;
 
 import com.google.inject.Module;
+import com.google.inject.Provides;
 import com.google.inject.binder.AnnotatedBindingBuilder;
 import com.google.inject.binder.AnnotatedConstantBindingBuilder;
 import com.google.inject.binder.LinkedBindingBuilder;
 import com.google.inject.matcher.Matcher;
+import com.google.inject.name.Named;
 import com.google.inject.servlet.ServletModule;
 import com.google.inject.spi.ProvisionListener;
 import com.google.inject.spi.TypeListener;
 import com.guicedee.guicedinjection.GuiceContext;
 import com.guicedee.guicedinjection.interfaces.IGuiceModule;
+import com.guicedee.guicedservlets.GuicedServletKeys;
+import com.guicedee.guicedservlets.services.mocks.MockHTTPSession;
+import com.guicedee.guicedservlets.services.mocks.MockRequest;
+import com.guicedee.guicedservlets.services.mocks.MockResponse;
+import com.guicedee.guicedservlets.services.mocks.MockServletContext;
+import com.guicedee.guicedservlets.services.scopes.CallScope;
+import com.guicedee.guicedservlets.services.scopes.CallScoper;
 import com.guicedee.logger.LogFactory;
 
 import java.lang.annotation.Annotation;
@@ -138,6 +147,26 @@ public class GuiceSiteInjectorModule
 	@Override
 	public void configureServlets()
 	{
+		bindScope(CallScope.class, callScope);
+
+		bind(GuicedServletKeys.getHttpSessionKey())
+				.toProvider(HttpSessionProvider.class).in(CallScope.class);
+
+		bind(GuicedServletKeys.getServletRequestKey())
+				.toProvider(HttpServletRequestProvider.class).in(CallScope.class);
+
+		bind(GuicedServletKeys.getHttpServletRequestKey())
+				.toProvider(HttpServletRequestProvider.class).in(CallScope.class);
+
+		bind(GuicedServletKeys.getServletResponseKey())
+				.toProvider(HttpServletResponseProvider.class).in(CallScope.class);
+
+		bind(GuicedServletKeys.getHttpServletResponseKey())
+				.toProvider(HttpServletResponseProvider.class).in(CallScope.class);
+
+		bind(GuicedServletKeys.getServletContextKey())
+				.toProvider(HttpServletContextProvider.class).in(CallScope.class);
+
 		runBinders();
 	}
 
@@ -415,4 +444,11 @@ public class GuiceSiteInjectorModule
 		super.bindInterceptor(classMatcher, methodMatcher, interceptors);
 	}
 
+	private final CallScoper callScope = new CallScoper();
+
+	@Provides
+	@Named("callScope")
+	CallScoper provideCallScope() {
+		return callScope;
+	}
 }

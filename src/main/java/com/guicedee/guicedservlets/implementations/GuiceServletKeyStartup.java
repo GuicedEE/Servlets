@@ -1,6 +1,7 @@
 package com.guicedee.guicedservlets.implementations;
 
 import com.google.inject.Key;
+import com.google.inject.name.Names;
 import com.guicedee.guicedinjection.interfaces.IGuicePreStartup;
 import com.guicedee.guicedservlets.GuicedServletKeys;
 import com.guicedee.logger.LogFactory;
@@ -23,12 +24,12 @@ public class GuiceServletKeyStartup
 	{
 		try
 		{
-			GuicedServletKeys.setHttpServletRequestKey(Key.get(HttpServletRequest.class));
-			GuicedServletKeys.setHttpServletResponseKey(Key.get(HttpServletResponse.class));
-			GuicedServletKeys.setHttpSessionKey(Key.get(HttpSession.class));
-			GuicedServletKeys.setServletContextKey(Key.get(ServletContext.class));
-			GuicedServletKeys.setServletRequestKey(Key.get(ServletRequest.class));
-			GuicedServletKeys.setServletResponseKey(Key.get(ServletResponse.class));
+			GuicedServletKeys.setHttpServletRequestKey(Key.get(HttpServletRequest.class, Names.named("TEST")));
+			GuicedServletKeys.setHttpServletResponseKey(Key.get(HttpServletResponse.class, Names.named("TEST")));
+			GuicedServletKeys.setHttpSessionKey(Key.get(HttpSession.class, Names.named("TEST")));
+			GuicedServletKeys.setServletContextKey(Key.get(ServletContext.class, Names.named("TEST")));
+			GuicedServletKeys.setServletRequestKey(Key.get(ServletRequest.class, Names.named("TEST")));
+			GuicedServletKeys.setServletResponseKey(Key.get(ServletResponse.class, Names.named("TEST")));
 
 			log.fine("Bound HttpServletResponse Key");
 			log.fine("Bound HttpServletRequest Key");

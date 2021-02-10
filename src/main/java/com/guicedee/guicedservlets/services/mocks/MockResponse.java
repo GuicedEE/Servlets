@@ -1,4 +1,4 @@
-package com.guicedee.guicedservlets.mocks;
+package com.guicedee.guicedservlets.services.mocks;
 
 import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.WriteListener;

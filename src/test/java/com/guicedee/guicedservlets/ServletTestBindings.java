@@ -1,9 +1,9 @@
 package com.guicedee.guicedservlets;
 
-import com.guicedee.guicedservlets.mocks.MockHTTPSession;
-import com.guicedee.guicedservlets.mocks.MockRequest;
-import com.guicedee.guicedservlets.mocks.MockResponse;
-import com.guicedee.guicedservlets.mocks.MockServletContext;
+import com.guicedee.guicedservlets.services.mocks.MockHTTPSession;
+import com.guicedee.guicedservlets.services.mocks.MockRequest;
+import com.guicedee.guicedservlets.services.mocks.MockResponse;
+import com.guicedee.guicedservlets.services.mocks.MockServletContext;
 import com.guicedee.guicedservlets.services.GuiceSiteInjectorModule;
 import com.guicedee.guicedservlets.services.IGuiceSiteBinder;
 

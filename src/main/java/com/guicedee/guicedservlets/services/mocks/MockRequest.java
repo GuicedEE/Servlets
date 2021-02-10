@@ -1,6 +1,7 @@
-package com.guicedee.guicedservlets.mocks;
+package com.guicedee.guicedservlets.services.mocks;
 
 import com.google.common.hash.Hashing;
+
 import org.apache.commons.io.IOUtils;
 
 import jakarta.servlet.*;

@@ -1,4 +1,4 @@
-package com.guicedee.guicedservlets.mocks;
+package com.guicedee.guicedservlets.services.mocks;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;

@@ -47,7 +47,6 @@
         <dependency>
             <groupId>com.guicedee.services</groupId>
             <artifactId>commons-io</artifactId>
-            <scope>test</scope>
         </dependency>
 
     </dependencies>

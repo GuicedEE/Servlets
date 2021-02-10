@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package com.guicedee.guicedservlets.mocks;
+package com.guicedee.guicedservlets.services.mocks;
 
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpSession;

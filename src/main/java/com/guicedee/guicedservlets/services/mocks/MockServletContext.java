@@ -1,9 +1,9 @@
-package com.guicedee.guicedservlets.mocks;
-
-import org.junit.platform.commons.util.StringUtils;
+package com.guicedee.guicedservlets.services.mocks;
 
 import jakarta.servlet.*;
 import jakarta.servlet.descriptor.JspConfigDescriptor;
+import org.apache.commons.lang3.StringUtils;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
