@@ -1,7 +1,4 @@
 module com.guicedee.guicedservlets {
-
-	uses com.guicedee.guicedservlets.services.IGuiceSiteBinder;
-
 	requires transitive com.google.guice.extensions.servlet;
 	requires transitive com.guicedee.guicedinjection;
 	requires transitive java.servlet;
@@ -20,5 +17,9 @@ module com.guicedee.guicedservlets {
 
 	provides com.guicedee.guicedinjection.interfaces.IGuiceModule with com.guicedee.guicedservlets.services.GuiceSiteInjectorModule;
 	provides com.guicedee.guicedinjection.interfaces.IGuicePreStartup with com.guicedee.guicedservlets.implementations.GuiceServletKeyStartup;
+
+	uses com.guicedee.guicedservlets.services.IGuiceSiteBinder;
+	uses com.guicedee.guicedservlets.services.IOnCallScopeEnter;
+	uses com.guicedee.guicedservlets.services.IOnCallScopeExit;
 
 }

@@ -2,8 +2,13 @@ package com.guicedee.guicedservlets.services.scopes;
 
 import com.google.common.collect.Maps;
 import com.google.inject.*;
+import com.guicedee.guicedinjection.interfaces.IDefaultService;
+import com.guicedee.guicedservlets.services.IOnCallScopeEnter;
+import com.guicedee.guicedservlets.services.IOnCallScopeExit;
 
 import java.util.Map;
+import java.util.ServiceLoader;
+import java.util.Set;
 
 import static com.google.common.base.Preconditions.checkState;
 
@@ -24,10 +29,20 @@ public class CallScoper  implements Scope  {
     public void enter() {
         checkState(values.get() == null, "A scoping block is already in progress");
         values.set(Maps.<Key<?>, Object>newHashMap());
+        @SuppressWarnings("rawtypes")
+        Set<IOnCallScopeEnter> scopeEnters = IDefaultService.loaderToSet(ServiceLoader.load(IOnCallScopeEnter.class));
+        for (IOnCallScopeEnter<?> scopeEnter : scopeEnters) {
+            scopeEnter.onScopeEnter();
+        }
     }
 
     public void exit() {
         checkState(values.get() != null, "No scoping block in progress");
+        @SuppressWarnings("rawtypes")
+        Set<IOnCallScopeExit> scopeEnters = IDefaultService.loaderToSet(ServiceLoader.load(IOnCallScopeExit.class));
+        for (IOnCallScopeExit<?> scopeEnter : scopeEnters) {
+            scopeEnter.onScopeExit();
+        }
         values.remove();
     }
 
