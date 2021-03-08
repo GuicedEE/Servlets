@@ -1,7 +1,7 @@
 module com.guicedee.guicedservlets {
 	requires transitive com.google.guice.extensions.servlet;
 	requires transitive com.guicedee.guicedinjection;
-	requires transitive java.servlet;
+	requires transitive jakarta.servlet;
 
 	requires transitive jakarta.validation;
 	requires org.apache.commons.io;
