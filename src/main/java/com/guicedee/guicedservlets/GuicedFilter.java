@@ -47,9 +47,17 @@ public class GuicedFilter
 	@Override
 	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException
 	{
-		scope.enter();
-		super.doFilter(servletRequest, servletResponse, filterChain);
-		scope.exit();
+		try {
+			scope.enter();
+		}catch (java.lang.IllegalStateException T)
+		{
+			//already in scope
+		}
+		try {
+			super.doFilter(servletRequest, servletResponse, filterChain);
+		}finally {
+			scope.exit();
+		}
 	}
 
 	/**
