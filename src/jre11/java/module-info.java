@@ -4,6 +4,7 @@ module com.guicedee.guicedservlets {
 	requires transitive jakarta.servlet;
 
 	requires transitive jakarta.validation;
+	
 	requires org.apache.commons.io;
 
 	exports com.guicedee.guicedservlets;
