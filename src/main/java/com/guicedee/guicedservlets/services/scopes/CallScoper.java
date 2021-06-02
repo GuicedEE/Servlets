@@ -9,6 +9,7 @@ import com.guicedee.guicedservlets.services.IOnCallScopeExit;
 import java.util.Map;
 import java.util.ServiceLoader;
 import java.util.Set;
+import java.util.logging.Logger;
 
 import static com.google.common.base.Preconditions.checkState;
 
@@ -27,23 +28,34 @@ public class CallScoper  implements Scope  {
             = new ThreadLocal<Map<Key<?>, Object>>();
 
     public void enter() {
-        checkState(values.get() == null, "A scoping block is already in progress");
-        values.set(Maps.<Key<?>, Object>newHashMap());
-        @SuppressWarnings("rawtypes")
-        Set<IOnCallScopeEnter> scopeEnters = IDefaultService.loaderToSet(ServiceLoader.load(IOnCallScopeEnter.class));
-        for (IOnCallScopeEnter<?> scopeEnter : scopeEnters) {
-            scopeEnter.onScopeEnter();
+        try
+        {
+            checkState(values.get() == null, "A scoping block is already in progress");
+            values.set(Maps.<Key<?>, Object>newHashMap());
+            @SuppressWarnings("rawtypes")
+            Set<IOnCallScopeEnter> scopeEnters = IDefaultService.loaderToSet(ServiceLoader.load(IOnCallScopeEnter.class));
+            for (IOnCallScopeEnter<?> scopeEnter : scopeEnters) {
+                scopeEnter.onScopeEnter();
+            }
+        }catch (Throwable T)
+        {
+            Logger.getLogger("CallScoper").warning("A scoping block is already in progress, not calling scope enters again");
         }
     }
 
     public void exit() {
-        checkState(values.get() != null, "No scoping block in progress");
-        @SuppressWarnings("rawtypes")
-        Set<IOnCallScopeExit> scopeEnters = IDefaultService.loaderToSet(ServiceLoader.load(IOnCallScopeExit.class));
-        for (IOnCallScopeExit<?> scopeEnter : scopeEnters) {
-            scopeEnter.onScopeExit();
+        try
+        {
+            checkState(values.get() != null, "No scoping block in progress");
+            Set<IOnCallScopeExit> scopeEnters = IDefaultService.loaderToSet(ServiceLoader.load(IOnCallScopeExit.class));
+            for (IOnCallScopeExit<?> scopeEnter : scopeEnters) {
+                scopeEnter.onScopeExit();
+            }
+            values.remove();
+        }catch (Throwable T)
+        {
+            Logger.getLogger("CallScoper").warning("Call Scoping block was not in progress");
         }
-        values.remove();
     }
 
     public <T> void seed(Key<T> key, T value) {
