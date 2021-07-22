@@ -52,8 +52,8 @@ public class CallScoper implements Scope
 		}
 		catch (Throwable T)
 		{
-			Logger.getLogger("CallScoper")
-			      .log(Level.WARNING, "A scoping block is already in progress, not calling scope enters again", T);
+		//	Logger.getLogger("CallScoper")
+			//      .log(Level.WARNING, "A scoping block is already in progress, not calling scope enters again", T);
 		}
 	}
 	
