@@ -74,14 +74,18 @@ public class CallScoper implements Scope
 					Logger.getLogger("CallScoper")
 					      .log(Level.WARNING, "Exception on call scope exit", T);
 				}
-				
 			}
 			values.remove();
 		}
-		catch (Throwable T)
+		catch (IllegalStateException T)
 		{
 			Logger.getLogger("CallScoper")
-			      .warning("Call Scoping block was not in progress");
+			      .log(Level.WARNING,"NOT IN SCOPE ",T);
+			
+		}catch (Throwable T)
+		{
+			Logger.getLogger("CallScoper")
+			      .log(Level.WARNING,"Cannot perform close scope",T);
 		}
 	}
 	
