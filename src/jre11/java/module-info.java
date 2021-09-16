@@ -15,6 +15,7 @@ module com.guicedee.guicedservlets {
 	opens com.guicedee.guicedservlets.services.mocks to com.google.common,com.google.guice.extensions.servlet, com.google.guice;
 	opens com.guicedee.guicedservlets.services.scopes to com.google.common,com.google.guice.extensions.servlet, com.google.guice;
 	opens com.guicedee.guicedservlets to com.google.common,com.google.guice.extensions.servlet, com.google.guice;
+	opens com.guicedee.guicedservlets.services to com.google.guice;
 
 	provides com.guicedee.guicedinjection.interfaces.IGuiceModule with com.guicedee.guicedservlets.services.GuiceSiteInjectorModule;
 	provides com.guicedee.guicedinjection.interfaces.IGuicePreStartup with com.guicedee.guicedservlets.implementations.GuiceServletKeyStartup;
