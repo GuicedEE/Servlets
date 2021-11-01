@@ -12,7 +12,7 @@
     <groupId>com.guicedee.servlets</groupId>
     <artifactId>guiced-servlets</artifactId>
     <packaging>jar</packaging>
-
+    <version>0.0.0_0-SNAPSHOT</version>
     <name>Guiced Servlets</name>
     <description>An integration library for Servlets in the Guiced Injection Framework
     </description>
