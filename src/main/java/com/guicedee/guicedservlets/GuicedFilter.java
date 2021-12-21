@@ -4,10 +4,13 @@ import com.google.inject.Inject;
 import com.google.inject.name.Named;
 import com.google.inject.servlet.GuiceFilter;
 
+import com.guicedee.guicedinjection.*;
 import com.guicedee.guicedservlets.services.scopes.CallScoper;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
 import java.io.IOException;
+
+import static com.guicedee.guicedservlets.GuicedServletKeys.*;
 
 /**
  * Enables web scopes for guiced items
@@ -17,6 +20,8 @@ import java.io.IOException;
 public class GuicedFilter
 		extends GuiceFilter
 {
+	private static boolean killSessionOnRequestClosed;
+	
 	@Inject
 	@Named("callScope")
 	CallScoper scope;
@@ -49,6 +54,8 @@ public class GuicedFilter
 	{
 		try {
 			scope.enter();
+			CallScopeProperties properties = GuiceContext.get(CallScopeProperties.class);
+			properties.setWebCall(true);
 		}catch (java.lang.IllegalStateException T)
 		{
 			//already in scope
@@ -57,6 +64,12 @@ public class GuicedFilter
 			super.doFilter(servletRequest, servletResponse, filterChain);
 		}finally {
 			scope.exit();
+		}
+		if (killSessionOnRequestClosed)
+		{
+			GuicedServletSessionManager.getSessionMap().forEach((key,value) ->{
+				value.invalidate();
+			});
 		}
 	}
 
@@ -82,5 +95,15 @@ public class GuicedFilter
 	public void destroy()
 	{
 		super.destroy();
+	}
+	
+	public static boolean isKillSessionOnRequestClosed()
+	{
+		return killSessionOnRequestClosed;
+	}
+	
+	public static void setKillSessionOnRequestClosed(boolean killSessionOnRequestClosed)
+	{
+		GuicedFilter.killSessionOnRequestClosed = killSessionOnRequestClosed;
 	}
 }

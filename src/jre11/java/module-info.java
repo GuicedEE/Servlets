@@ -1,7 +1,10 @@
+import com.guicedee.guicedservlets.services.*;
+
 module com.guicedee.guicedservlets {
 	requires transitive com.google.guice.extensions.servlet;
 	requires transitive com.guicedee.guicedinjection;
 	requires transitive jakarta.servlet;
+	
 
 	requires transitive jakarta.validation;
 	

@@ -1,14 +1,12 @@
 package com.guicedee.guicedservlets.services.scopes;
 
-import com.google.common.collect.Maps;
+import com.google.common.collect.*;
 import com.google.inject.*;
-import com.guicedee.guicedinjection.interfaces.IDefaultService;
-import com.guicedee.guicedservlets.services.IOnCallScopeEnter;
-import com.guicedee.guicedservlets.services.IOnCallScopeExit;
+import com.guicedee.guicedinjection.interfaces.*;
+import com.guicedee.guicedservlets.services.*;
 
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.logging.*;
 
 import static com.google.common.base.Preconditions.*;
 
@@ -29,12 +27,15 @@ public class CallScoper implements Scope
 	private final ThreadLocal<Map<Key<?>, Object>> values
 			= new ThreadLocal<Map<Key<?>, Object>>();
 	
+	private boolean startedScope;
+	
 	public void enter()
 	{
 		try
 		{
 			checkState(values.get() == null, "A scoping block is already in progress");
 			values.set(Maps.<Key<?>, Object>newHashMap());
+			startedScope = true;
 			@SuppressWarnings("rawtypes")
 			Set<IOnCallScopeEnter> scopeEnters = IDefaultService.loaderToSet(ServiceLoader.load(IOnCallScopeEnter.class));
 			for (IOnCallScopeEnter<?> scopeEnter : scopeEnters)
@@ -52,8 +53,7 @@ public class CallScoper implements Scope
 		}
 		catch (Throwable T)
 		{
-		//	Logger.getLogger("CallScoper")
-			//      .log(Level.WARNING, "A scoping block is already in progress, not calling scope enters again", T);
+			startedScope = false;
 		}
 	}
 	
@@ -80,12 +80,13 @@ public class CallScoper implements Scope
 		catch (IllegalStateException T)
 		{
 			Logger.getLogger("CallScoper")
-			      .log(Level.WARNING,"NOT IN SCOPE ",T);
+			      .log(Level.WARNING, "NOT IN SCOPE ", T);
 			
-		}catch (Throwable T)
+		}
+		catch (Throwable T)
 		{
 			Logger.getLogger("CallScoper")
-			      .log(Level.WARNING,"Cannot perform close scope",T);
+			      .log(Level.WARNING, "Cannot perform close scope", T);
 		}
 	}
 	
