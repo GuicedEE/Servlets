@@ -20,7 +20,7 @@ import static com.guicedee.guicedservlets.GuicedServletKeys.*;
 public class GuicedFilter
 		extends GuiceFilter
 {
-	private static boolean killSessionOnRequestClosed;
+	private static boolean killSessionOnRequestClosed = true;
 	
 	@Inject
 	@Named("callScope")
