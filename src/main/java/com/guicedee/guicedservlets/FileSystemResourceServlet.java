@@ -47,12 +47,12 @@ public class FileSystemResourceServlet extends StaticResourceServlet
 		File file = new File(folder, Paths.get(name)
 		                                  .getFileName()
 		                                  .toString());
-		/*if (!file.exists())
+		if (!file.exists())
 		{
 			file = new File(folder, Paths.get("index.html")
 			                             .getFileName()
 			                             .toString());
-		}*/
+		}
 		
 		File finalFile = file;
 		return !file.exists() ? null : new StaticResource()
