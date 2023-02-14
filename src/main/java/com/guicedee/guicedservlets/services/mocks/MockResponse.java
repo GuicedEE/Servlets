@@ -237,7 +237,6 @@ public class MockResponse
 	 *
 	 * @return The encoded url
 	 */
-	@Override
 	public String encodeUrl(final String url)
 	{
 		return url;
@@ -252,7 +251,6 @@ public class MockResponse
 	 *
 	 * @return The encoded url
 	 */
-	@Override
 	public String encodeRedirectUrl(final String url)
 	{
 		return url;
@@ -887,7 +885,6 @@ public class MockResponse
 	 *
 	 * @deprecated
 	 */
-	@Override
 	public void setStatus(final int status, final String msg)
 	{
 		setStatus(status);

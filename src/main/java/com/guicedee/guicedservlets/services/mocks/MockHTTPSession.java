@@ -211,19 +211,13 @@ public class MockHTTPSession
 	}
 
 	@Override
-	public jakarta.servlet.http.HttpSessionContext getSessionContext()
-	{
-		throw new UnsupportedOperationException("getSessionContext");
-	}
-
-	@Override
 	public Object getAttribute(String name)
 	{
 		assertIsValid();
 		return attributes.get(name);
 	}
 
-	@Override
+
 	public Object getValue(String name)
 	{
 		return getAttribute(name);
@@ -236,7 +230,6 @@ public class MockHTTPSession
 		return Collections.enumeration(new LinkedHashSet<String>(attributes.keySet()));
 	}
 
-	@Override
 	public String[] getValueNames()
 	{
 		assertIsValid();
@@ -262,7 +255,6 @@ public class MockHTTPSession
 		}
 	}
 
-	@Override
 	public void putValue(String name, Object value)
 	{
 		setAttribute(name, value);
@@ -279,7 +271,6 @@ public class MockHTTPSession
 		}
 	}
 
-	@Override
 	public void removeValue(String name)
 	{
 		removeAttribute(name);

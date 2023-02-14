@@ -710,7 +710,6 @@ public class MockServletContext
 	 * @throws ServletException
 	 * 		Not used
 	 */
-	@Override
 	public Servlet getServlet(String name) throws ServletException
 	{
 		return null;
@@ -721,7 +720,6 @@ public class MockServletContext
 	 *
 	 * @return null
 	 */
-	@Override
 	public Enumeration<Servlet> getServlets()
 	{
 		return null;
@@ -732,7 +730,6 @@ public class MockServletContext
 	 *
 	 * @return null
 	 */
-	@Override
 	public Enumeration<String> getServletNames()
 	{
 		return null;
@@ -758,7 +755,6 @@ public class MockServletContext
 	 * @param msg
 	 * 		The message to log
 	 */
-	@Override
 	public void log(Exception e, String msg)
 	{
 		log(msg, e);

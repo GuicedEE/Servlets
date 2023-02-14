@@ -857,7 +857,6 @@ public class MockRequest
 	 *
 	 * @deprecated Use ServletContext.getRealPath(String) instead.
 	 */
-	@Override
 	public String getRealPath(String name)
 	{
 		return servletContext.getRealPath(name);
@@ -959,7 +958,25 @@ public class MockRequest
 	{
 		return null;
 	}
-
+	
+	@Override
+	public String getRequestId()
+	{
+		return null;
+	}
+	
+	@Override
+	public String getProtocolRequestId()
+	{
+		return null;
+	}
+	
+	@Override
+	public ServletConnection getServletConnection()
+	{
+		return null;
+	}
+	
 	/**
 	 * Set the port number to which the request was sent.
 	 *
@@ -1551,7 +1568,6 @@ public class MockRequest
 	 *
 	 * @return Always false
 	 */
-	@Override
 	public boolean isRequestedSessionIdFromUrl()
 	{
 		return false;
