@@ -1,36 +1,29 @@
 package com.guicedee.guicedservlets;
 
-import com.guicedee.guicedservlets.services.scopes.*;
+import com.guicedee.guicedservlets.services.scopes.CallScope;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.experimental.Accessors;
 
-import java.io.*;
+import java.io.Serial;
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 @CallScope
+@Getter
+@Setter
+@Accessors(chain = true)
 public class CallScopeProperties implements Serializable
 {
-	//@Serial
+	@Serial
 	private static final long serialVersionUID = 1L;
-	
+	/**
+	 * If this call scope is from a web request call
+	 */
 	private boolean webCall;
-	
 	/**
-	 * If this call scope is from a web request call
-	 *
-	 * @return
+	 * Any properties to carry within the call scope
 	 */
-	public boolean isWebCall()
-	{
-		return webCall;
-	}
-	
-	/**
-	 * If this call scope is from a web request call
-	 *
-	 * @param webCall
-	 * @return
-	 */
-	public CallScopeProperties setWebCall(boolean webCall)
-	{
-		this.webCall = webCall;
-		return this;
-	}
+	private Map<Object, Object> properties = new HashMap<>();
 }

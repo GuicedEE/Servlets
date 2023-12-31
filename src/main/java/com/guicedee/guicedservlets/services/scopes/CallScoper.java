@@ -2,6 +2,10 @@ package com.guicedee.guicedservlets.services.scopes;
 
 import com.google.common.collect.*;
 import com.google.inject.*;
+import com.google.inject.servlet.RequestScoped;
+import com.google.inject.servlet.RequestScoper;
+import com.google.inject.servlet.ServletScopes;
+import com.guicedee.guicedinjection.GuiceContext;
 import com.guicedee.guicedinjection.interfaces.*;
 import com.guicedee.guicedservlets.services.*;
 
@@ -14,18 +18,18 @@ import static com.google.common.base.Preconditions.*;
 public class CallScoper implements Scope
 {
 	private static final Provider<Object> SEEDED_KEY_PROVIDER =
-			new Provider<Object>()
-			{
-				public Object get()
-				{
-					throw new IllegalStateException("If you got here then it means that" +
-					                                " your code asked for scoped object which should have been" +
-					                                " explicitly seeded in this scope by calling" +
-					                                " CallScoper.seed(), but was not.");
-				}
-			};
-	private final ThreadLocal<Map<Key<?>, Object>> values
-			= new ThreadLocal<Map<Key<?>, Object>>();
+					new Provider<Object>()
+					{
+						public Object get()
+						{
+							throw new IllegalStateException("If you got here then it means that" +
+											" your code asked for scoped object which should have been" +
+											" explicitly seeded in this scope by calling" +
+											" CallScoper.seed(), but was not.");
+						}
+					};
+	private static final ThreadLocal<Map<Key<?>, Object>> values
+					= new ThreadLocal<Map<Key<?>, Object>>();
 	
 	private boolean startedScope;
 	
@@ -37,21 +41,19 @@ public class CallScoper implements Scope
 			values.set(Maps.<Key<?>, Object>newHashMap());
 			startedScope = true;
 			@SuppressWarnings("rawtypes")
-			Set<IOnCallScopeEnter> scopeEnters = IDefaultService.loaderToSet(ServiceLoader.load(IOnCallScopeEnter.class));
+			Set<IOnCallScopeEnter> scopeEnters = GuiceContext.instance().loaderToSet(ServiceLoader.load(IOnCallScopeEnter.class));
 			for (IOnCallScopeEnter<?> scopeEnter : scopeEnters)
 			{
 				try
 				{
-					scopeEnter.onScopeEnter();
-				}
-				catch (Throwable T)
+					scopeEnter.onScopeEnter(this);
+				} catch (Throwable T)
 				{
 					Logger.getLogger("CallScoper")
-					      .log(Level.WARNING, "Exception on scope entry - " + scopeEnter, T);
+									.log(Level.WARNING, "Exception on scope entry - " + scopeEnter, T);
 				}
 			}
-		}
-		catch (Throwable T)
+		} catch (Throwable T)
 		{
 			startedScope = false;
 		}
@@ -62,31 +64,28 @@ public class CallScoper implements Scope
 		try
 		{
 			checkState(values.get() != null, "No scoping block in progress");
-			Set<IOnCallScopeExit> scopeEnters = IDefaultService.loaderToSet(ServiceLoader.load(IOnCallScopeExit.class));
+			Set<IOnCallScopeExit> scopeEnters = GuiceContext.instance().loaderToSet(ServiceLoader.load(IOnCallScopeExit.class));
 			for (IOnCallScopeExit<?> scopeEnter : scopeEnters)
 			{
 				try
 				{
 					scopeEnter.onScopeExit();
-				}
-				catch (Throwable T)
+				} catch (Throwable T)
 				{
 					Logger.getLogger("CallScoper")
-					      .log(Level.WARNING, "Exception on call scope exit", T);
+									.log(Level.WARNING, "Exception on call scope exit", T);
 				}
 			}
 			values.remove();
-		}
-		catch (IllegalStateException T)
+		} catch (IllegalStateException T)
 		{
 			Logger.getLogger("CallScoper")
-			      .log(Level.WARNING, "NOT IN SCOPE ", T);
+							.log(Level.WARNING, "NOT IN SCOPE ", T);
 			
-		}
-		catch (Throwable T)
+		} catch (Throwable T)
 		{
 			Logger.getLogger("CallScoper")
-			      .log(Level.WARNING, "Cannot perform close scope", T);
+							.log(Level.WARNING, "Cannot perform close scope", T);
 		}
 	}
 	
@@ -94,8 +93,8 @@ public class CallScoper implements Scope
 	{
 		Map<Key<?>, Object> scopedObjects = getScopedObjectMap(key);
 		checkState(!scopedObjects.containsKey(key), "A value for the key %s was " +
-		                                            "already seeded in this scope. Old value: %s New value: %s", key,
-				scopedObjects.get(key), value);
+										"already seeded in this scope. Old value: %s New value: %s", key,
+						scopedObjects.get(key), value);
 		scopedObjects.put(key, value);
 	}
 	
@@ -136,8 +135,10 @@ public class CallScoper implements Scope
 		Map<Key<?>, Object> scopedObjects = values.get();
 		if (scopedObjects == null)
 		{
+			//enter();
+		//	scopedObjects = values.get();
 			throw new OutOfScopeException("Cannot access " + key
-			                              + " outside of a scoping block");
+			                              + " outside of a scoping block - " + key.toString());
 		}
 		return scopedObjects;
 	}

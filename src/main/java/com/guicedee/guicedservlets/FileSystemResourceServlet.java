@@ -13,6 +13,7 @@ import java.nio.file.*;
 public class FileSystemResourceServlet extends StaticResourceServlet
 {
 	private File folder;
+	private static boolean defaultToIndexHtml = false;
 	
 	public FileSystemResourceServlet setFolder(File folder)
 	{
@@ -47,12 +48,12 @@ public class FileSystemResourceServlet extends StaticResourceServlet
 		File file = new File(folder, Paths.get(name)
 		                                  .getFileName()
 		                                  .toString());
-		/*if (!file.exists())
+		if (!file.exists() && defaultToIndexHtml)
 		{
 			file = new File(folder, Paths.get("index.html")
 			                             .getFileName()
 			                             .toString());
-		}*/
+		}
 		
 		File finalFile = file;
 		return !file.exists() ? null : new StaticResource()

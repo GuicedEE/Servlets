@@ -8,6 +8,9 @@ import com.guicedee.guicedinjection.*;
 import com.guicedee.guicedservlets.services.scopes.CallScoper;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.io.IOException;
 
 import static com.guicedee.guicedservlets.GuicedServletKeys.*;
@@ -20,6 +23,8 @@ import static com.guicedee.guicedservlets.GuicedServletKeys.*;
 public class GuicedFilter
 		extends GuiceFilter
 {
+	@Getter
+	@Setter
 	private static boolean killSessionOnRequestClosed = true;
 	
 	@Inject
@@ -86,24 +91,5 @@ public class GuicedFilter
 	public void init(FilterConfig filterConfig) throws ServletException
 	{
 		super.init(filterConfig);
-	}
-
-	/**
-	 * Method destroy ...
-	 */
-	@Override
-	public void destroy()
-	{
-		super.destroy();
-	}
-	
-	public static boolean isKillSessionOnRequestClosed()
-	{
-		return killSessionOnRequestClosed;
-	}
-	
-	public static void setKillSessionOnRequestClosed(boolean killSessionOnRequestClosed)
-	{
-		GuicedFilter.killSessionOnRequestClosed = killSessionOnRequestClosed;
 	}
 }
