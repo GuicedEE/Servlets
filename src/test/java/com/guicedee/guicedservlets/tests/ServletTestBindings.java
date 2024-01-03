@@ -3,6 +3,7 @@ package com.guicedee.guicedservlets.tests;
 import com.google.inject.servlet.ServletModule;
 import com.guicedee.guicedservlets.GuicedServletKeys;
 import com.guicedee.guicedservlets.services.*;
+import com.guicedee.guicedservlets.servlets.services.IGuiceSiteBinder;
 import com.guicedee.guicedservlets.tests.mocks.MockHTTPSession;
 import com.guicedee.guicedservlets.tests.mocks.MockRequest;
 import com.guicedee.guicedservlets.tests.mocks.MockResponse;

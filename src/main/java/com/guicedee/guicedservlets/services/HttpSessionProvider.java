@@ -2,7 +2,7 @@ package com.guicedee.guicedservlets.services;
 
 import com.google.inject.Provider;
 import com.guicedee.guicedinjection.GuiceContext;
-import com.guicedee.guicedservlets.services.scopes.CallScope;
+import com.guicedee.guicedservlets.servlets.services.scopes.CallScope;
 import jakarta.servlet.http.HttpSession;
 import lombok.Setter;
 

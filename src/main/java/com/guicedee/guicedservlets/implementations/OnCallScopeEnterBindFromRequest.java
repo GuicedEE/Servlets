@@ -1,11 +1,14 @@
 package com.guicedee.guicedservlets.implementations;
 
 import com.google.inject.Inject;
+import com.google.inject.Key;
 import com.google.inject.OutOfScopeException;
+import com.google.inject.Scope;
 import com.google.inject.servlet.ServletScopes;
 import com.guicedee.guicedinjection.GuiceContext;
 import com.guicedee.guicedservlets.services.*;
 import com.guicedee.guicedservlets.services.scopes.CallScoper;
+import com.guicedee.guicedservlets.servlets.services.IOnCallScopeEnter;
 import jakarta.annotation.Nullable;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletContext;
@@ -22,21 +25,21 @@ import java.util.logging.Level;
 public class OnCallScopeEnterBindFromRequest implements IOnCallScopeEnter<OnCallScopeEnterBindFromRequest>
 {
 	@Override
-	public void onScopeEnter(CallScoper scoper)
+	public void onScopeEnter(Scope scoper)
 	{
 		ServletContext servletContext = GuiceContext.get(ServletContext.class);// servletContextProvider.get();
-		scoper.seed(ServletContext.class, servletContext);
+		scoper.scope(Key.get(ServletContext.class), () -> servletContext);
 		try
 		{
 			ServletScopes.transferRequest();
-			scoper.seed(ServletRequest.class, GuiceContext.get(ServletRequest.class));
-			scoper.seed(HttpServletRequest.class, GuiceContext.get(HttpServletRequest.class));
-			scoper.seed(ServletResponse.class, GuiceContext.get(ServletResponse.class));
-			scoper.seed(HttpServletResponse.class, GuiceContext.get(HttpServletResponse.class));
+			scoper.scope(Key.get(ServletRequest.class), () -> GuiceContext.get(ServletRequest.class));
+			scoper.scope(Key.get(HttpServletRequest.class), () -> GuiceContext.get(HttpServletRequest.class));
+			scoper.scope(Key.get(ServletResponse.class), () -> GuiceContext.get(ServletResponse.class));
+			scoper.scope(Key.get(HttpServletResponse.class), () -> GuiceContext.get(HttpServletResponse.class));
 			//scoper.seed(HttpSession.class, GuiceContext.get(HttpSession.class));
-		}catch (OutOfScopeException oe)
+		} catch (OutOfScopeException oe)
 		{
-			log.log(Level.FINE,"Call Scope started without a sesion",oe);
+			log.log(Level.FINE, "Call Scope started without a sesion", oe);
 		}
 	}
 }

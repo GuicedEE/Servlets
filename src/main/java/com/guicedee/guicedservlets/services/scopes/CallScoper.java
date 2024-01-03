@@ -1,18 +1,18 @@
 package com.guicedee.guicedservlets.services.scopes;
 
-import com.google.common.collect.*;
+import com.google.common.collect.Maps;
 import com.google.inject.*;
-import com.google.inject.servlet.RequestScoped;
-import com.google.inject.servlet.RequestScoper;
-import com.google.inject.servlet.ServletScopes;
 import com.guicedee.guicedinjection.GuiceContext;
-import com.guicedee.guicedinjection.interfaces.*;
-import com.guicedee.guicedservlets.services.*;
+import com.guicedee.guicedservlets.servlets.services.IOnCallScopeEnter;
+import com.guicedee.guicedservlets.servlets.services.IOnCallScopeExit;
 
-import java.util.*;
-import java.util.logging.*;
+import java.util.Map;
+import java.util.ServiceLoader;
+import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-import static com.google.common.base.Preconditions.*;
+import static com.google.common.base.Preconditions.checkState;
 
 
 public class CallScoper implements Scope

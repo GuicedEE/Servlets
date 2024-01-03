@@ -27,6 +27,8 @@ import com.guicedee.guicedinjection.*;
 import com.guicedee.guicedinjection.interfaces.*;
 import com.guicedee.guicedservlets.*;
 import com.guicedee.guicedservlets.services.scopes.*;
+import com.guicedee.guicedservlets.servlets.services.IGuiceSiteBinder;
+import com.guicedee.guicedservlets.servlets.services.scopes.CallScope;
 import lombok.extern.java.Log;
 
 import java.lang.annotation.*;

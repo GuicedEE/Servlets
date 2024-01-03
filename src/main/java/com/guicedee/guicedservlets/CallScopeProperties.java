@@ -1,6 +1,6 @@
 package com.guicedee.guicedservlets;
 
-import com.guicedee.guicedservlets.services.scopes.CallScope;
+import com.guicedee.guicedservlets.servlets.services.scopes.CallScope;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;

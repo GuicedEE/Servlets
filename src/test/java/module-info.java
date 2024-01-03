@@ -1,4 +1,4 @@
-import com.guicedee.guicedservlets.services.IGuiceSiteBinder;
+import com.guicedee.guicedservlets.servlets.services.IGuiceSiteBinder;
 import com.guicedee.guicedservlets.tests.ServletTestBindings;
 
 module guiced.servlets.test {

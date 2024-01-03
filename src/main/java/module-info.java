@@ -2,6 +2,7 @@ import com.guicedee.guicedservlets.implementations.OnCallScopeEnterBindFromReque
 import com.guicedee.guicedservlets.services.*;
 
 module com.guicedee.guicedservlets {
+	
 	requires transitive com.google.guice.extensions.servlet;
 	requires transitive com.guicedee.guicedinjection;
 	requires transitive jakarta.servlet;
@@ -21,10 +22,10 @@ module com.guicedee.guicedservlets {
 	provides com.guicedee.guicedinjection.interfaces.IGuiceModule with com.guicedee.guicedservlets.services.GuiceSiteInjectorModule;
 	provides com.guicedee.guicedinjection.interfaces.IGuicePreStartup with com.guicedee.guicedservlets.implementations.GuiceServletKeyStartup;
 	
-	provides IOnCallScopeEnter with OnCallScopeEnterBindFromRequest;
+	provides com.guicedee.guicedservlets.servlets.services.IOnCallScopeEnter with OnCallScopeEnterBindFromRequest;
 	
-	uses com.guicedee.guicedservlets.services.IGuiceSiteBinder;
-	uses com.guicedee.guicedservlets.services.IOnCallScopeEnter;
-	uses com.guicedee.guicedservlets.services.IOnCallScopeExit;
+	uses com.guicedee.guicedservlets.servlets.services.IGuiceSiteBinder;
+	uses com.guicedee.guicedservlets.servlets.services.IOnCallScopeEnter;
+	uses com.guicedee.guicedservlets.servlets.services.IOnCallScopeExit;
 
 }
