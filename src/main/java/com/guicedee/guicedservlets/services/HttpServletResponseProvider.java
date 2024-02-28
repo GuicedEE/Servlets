@@ -1,7 +1,7 @@
 package com.guicedee.guicedservlets.services;
 
 import com.google.inject.Provider;
-import com.guicedee.guicedinjection.GuiceContext;
+import com.guicedee.client.IGuiceContext;
 import com.guicedee.guicedservlets.servlets.services.scopes.CallScope;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -16,7 +16,7 @@ public class HttpServletResponseProvider implements Provider<HttpServletResponse
     @Override
     public HttpServletResponse get() {
         try {
-            return GuiceContext.get(HttpServletResponse.class);
+            return IGuiceContext.get(HttpServletResponse.class);
         } catch (Throwable T) {
             if(override != null)
                 return override;

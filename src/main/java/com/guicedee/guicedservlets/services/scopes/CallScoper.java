@@ -2,7 +2,7 @@ package com.guicedee.guicedservlets.services.scopes;
 
 import com.google.common.collect.Maps;
 import com.google.inject.*;
-import com.guicedee.guicedinjection.GuiceContext;
+import com.guicedee.client.*;
 import com.guicedee.guicedservlets.servlets.services.IOnCallScopeEnter;
 import com.guicedee.guicedservlets.servlets.services.IOnCallScopeExit;
 
@@ -41,7 +41,7 @@ public class CallScoper implements Scope
 			values.set(Maps.<Key<?>, Object>newHashMap());
 			startedScope = true;
 			@SuppressWarnings("rawtypes")
-			Set<IOnCallScopeEnter> scopeEnters = GuiceContext.instance().loaderToSet(ServiceLoader.load(IOnCallScopeEnter.class));
+			Set<IOnCallScopeEnter> scopeEnters = IGuiceContext.loaderToSet(ServiceLoader.load(IOnCallScopeEnter.class));
 			for (IOnCallScopeEnter<?> scopeEnter : scopeEnters)
 			{
 				try
@@ -64,7 +64,7 @@ public class CallScoper implements Scope
 		try
 		{
 			checkState(values.get() != null, "No scoping block in progress");
-			Set<IOnCallScopeExit> scopeEnters = GuiceContext.instance().loaderToSet(ServiceLoader.load(IOnCallScopeExit.class));
+			Set<IOnCallScopeExit> scopeEnters = IGuiceContext.loaderToSet(ServiceLoader.load(IOnCallScopeExit.class));
 			for (IOnCallScopeExit<?> scopeEnter : scopeEnters)
 			{
 				try

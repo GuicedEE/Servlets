@@ -3,7 +3,7 @@ package com.guicedee.guicedservlets.tests;
 import com.google.inject.Key;
 import com.google.inject.servlet.RequestParameters;
 import com.google.inject.servlet.ServletScopes;
-import com.guicedee.guicedinjection.GuiceContext;
+import com.guicedee.client.IGuiceContext;
 import com.guicedee.guicedservlets.GuicedServletKeys;
 import com.guicedee.guicedservlets.services.scopes.CallScoper;
 import com.guicedee.guicedservlets.tests.mocks.MockHTTPSession;
@@ -36,7 +36,7 @@ public class GuiceSiteInjectorModuleTest
 	@Test
 	void testFakeRequestScope()
 	{
-		GuiceContext.inject();
+		IGuiceContext.getContext().inject();
 		
 		ServletScopes.scopeRequest(new HashMap<>(Map.of(
 										Key.get(ServletContext.class), new MockServletContext(),
@@ -48,16 +48,16 @@ public class GuiceSiteInjectorModuleTest
 						)))
 						.open();
 		
-		RequestScopedObject obj = GuiceContext.get(RequestScopedObject.class);
-		BasicServlet servlet = GuiceContext.get(BasicServlet.class);
+		RequestScopedObject obj = IGuiceContext.get(RequestScopedObject.class);
+		BasicServlet servlet = IGuiceContext.get(BasicServlet.class);
 		
-		HttpServletRequest req = GuiceContext.get(HttpServletRequest.class);
-		CallScoper callScoper = GuiceContext.get(CallScoper.class);
+		HttpServletRequest req = IGuiceContext.get(HttpServletRequest.class);
+		CallScoper callScoper = IGuiceContext.get(CallScoper.class);
 		callScoper.enter();
 		
-		HttpServletRequest req2 = GuiceContext.get(HttpServletRequest.class);
-		HttpServletResponse resp2 = GuiceContext.get(HttpServletResponse.class);
-		HttpServletResponse resp = GuiceContext.get(GuicedServletKeys.getHttpServletResponseKey());
+		HttpServletRequest req2 = IGuiceContext.get(HttpServletRequest.class);
+		HttpServletResponse resp2 = IGuiceContext.get(HttpServletResponse.class);
+		HttpServletResponse resp = IGuiceContext.get(GuicedServletKeys.getHttpServletResponseKey());
 		callScoper.exit();
 		
 		System.out.println(obj);

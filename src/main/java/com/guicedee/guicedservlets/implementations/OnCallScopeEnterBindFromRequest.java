@@ -5,7 +5,7 @@ import com.google.inject.Key;
 import com.google.inject.OutOfScopeException;
 import com.google.inject.Scope;
 import com.google.inject.servlet.ServletScopes;
-import com.guicedee.guicedinjection.GuiceContext;
+import com.guicedee.client.IGuiceContext;
 import com.guicedee.guicedservlets.services.*;
 import com.guicedee.guicedservlets.services.scopes.CallScoper;
 import com.guicedee.guicedservlets.servlets.services.IOnCallScopeEnter;
@@ -27,15 +27,15 @@ public class OnCallScopeEnterBindFromRequest implements IOnCallScopeEnter<OnCall
 	@Override
 	public void onScopeEnter(Scope scoper)
 	{
-		ServletContext servletContext = GuiceContext.get(ServletContext.class);// servletContextProvider.get();
+		ServletContext servletContext = IGuiceContext.get(ServletContext.class);// servletContextProvider.get();
 		scoper.scope(Key.get(ServletContext.class), () -> servletContext);
 		try
 		{
 			ServletScopes.transferRequest();
-			scoper.scope(Key.get(ServletRequest.class), () -> GuiceContext.get(ServletRequest.class));
-			scoper.scope(Key.get(HttpServletRequest.class), () -> GuiceContext.get(HttpServletRequest.class));
-			scoper.scope(Key.get(ServletResponse.class), () -> GuiceContext.get(ServletResponse.class));
-			scoper.scope(Key.get(HttpServletResponse.class), () -> GuiceContext.get(HttpServletResponse.class));
+			scoper.scope(Key.get(ServletRequest.class), () -> IGuiceContext.get(ServletRequest.class));
+			scoper.scope(Key.get(HttpServletRequest.class), () -> IGuiceContext.get(HttpServletRequest.class));
+			scoper.scope(Key.get(ServletResponse.class), () -> IGuiceContext.get(ServletResponse.class));
+			scoper.scope(Key.get(HttpServletResponse.class), () -> IGuiceContext.get(HttpServletResponse.class));
 			//scoper.seed(HttpSession.class, GuiceContext.get(HttpSession.class));
 		} catch (OutOfScopeException oe)
 		{

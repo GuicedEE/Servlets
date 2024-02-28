@@ -1,8 +1,8 @@
 package com.guicedee.guicedservlets.services;
 
 import com.google.inject.Provider;
-import com.guicedee.guicedinjection.GuiceContext;
 //import com.guicedee.guicedservlets.servlets.services.scopes.CallScope;
+import com.guicedee.client.*;
 import com.guicedee.guicedservlets.servlets.services.scopes.CallScope;
 import jakarta.servlet.ServletContext;
 import lombok.Setter;
@@ -18,7 +18,7 @@ public class HttpServletContextProvider implements Provider<ServletContext>
 	{
 		try
 		{
-			return GuiceContext.get(ServletContext.class);
+			return IGuiceContext.get(ServletContext.class);
 		} catch (Throwable T)
 		{
 			if (override == null)

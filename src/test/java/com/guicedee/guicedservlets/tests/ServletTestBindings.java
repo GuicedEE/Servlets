@@ -1,17 +1,11 @@
 package com.guicedee.guicedservlets.tests;
 
-import com.google.inject.servlet.ServletModule;
-import com.guicedee.guicedservlets.GuicedServletKeys;
+import com.google.inject.servlet.*;
+import com.guicedee.guicedinjection.interfaces.*;
 import com.guicedee.guicedservlets.services.*;
-import com.guicedee.guicedservlets.servlets.services.IGuiceSiteBinder;
-import com.guicedee.guicedservlets.tests.mocks.MockHTTPSession;
-import com.guicedee.guicedservlets.tests.mocks.MockRequest;
-import com.guicedee.guicedservlets.tests.mocks.MockResponse;
-import com.guicedee.guicedservlets.tests.mocks.MockServletContext;
+import com.guicedee.guicedservlets.tests.mocks.*;
 
-public class ServletTestBindings
-	extends ServletModule
-		implements IGuiceSiteBinder<ServletTestBindings>
+public class ServletTestBindings extends ServletModule implements IGuiceModule<ServletTestBindings>
 {
 	@Override
 	protected void configureServlets()

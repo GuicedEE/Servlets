@@ -1,7 +1,7 @@
 package com.guicedee.guicedservlets.services;
 
 import com.google.inject.Provider;
-import com.guicedee.guicedinjection.GuiceContext;
+import com.guicedee.client.*;
 import com.guicedee.guicedservlets.servlets.services.scopes.CallScope;
 import jakarta.servlet.http.HttpSession;
 import lombok.Setter;
@@ -18,7 +18,7 @@ public class HttpSessionProvider implements Provider<HttpSession>
 	{
 		try
 		{
-			return GuiceContext.get(HttpSession.class);
+			return IGuiceContext.get(HttpSession.class);
 		} catch (Throwable T)
 		{
 			if (override != null)

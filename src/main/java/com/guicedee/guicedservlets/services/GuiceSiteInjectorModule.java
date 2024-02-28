@@ -16,25 +16,14 @@
  */
 package com.guicedee.guicedservlets.services;
 
-import com.google.inject.Module;
 import com.google.inject.*;
-import com.google.inject.binder.*;
-import com.google.inject.matcher.*;
 import com.google.inject.name.*;
 import com.google.inject.servlet.*;
-import com.google.inject.spi.*;
-import com.guicedee.guicedinjection.*;
 import com.guicedee.guicedinjection.interfaces.*;
 import com.guicedee.guicedservlets.*;
 import com.guicedee.guicedservlets.services.scopes.*;
-import com.guicedee.guicedservlets.servlets.services.IGuiceSiteBinder;
-import com.guicedee.guicedservlets.servlets.services.scopes.CallScope;
-import lombok.extern.java.Log;
-
-import java.lang.annotation.*;
-import java.lang.reflect.*;
-import java.util.*;
-import java.util.logging.*;
+import com.guicedee.guicedservlets.servlets.services.scopes.*;
+import lombok.extern.java.*;
 
 /**
  * Exposes the site injection modules for consumption
@@ -44,9 +33,7 @@ import java.util.logging.*;
  */
 @SuppressWarnings({"unused", "WeakerAccess"})
 @Log
-public class GuiceSiteInjectorModule
-				extends ServletModule
-				implements IGuiceModule<GuiceSiteInjectorModule>
+public class GuiceSiteInjectorModule extends ServletModule implements IGuiceModule<GuiceSiteInjectorModule>
 {
 	
 	private final CallScoper callScope = new CallScoper();
@@ -86,38 +73,40 @@ public class GuiceSiteInjectorModule
 		bindScope(CallScope.class, callScope);
 		
 		bind(GuicedServletKeys.getHttpSessionKey())
-						.toProvider(HttpSessionProvider.class)
-						.in(CallScope.class);
+				.toProvider(HttpSessionProvider.class)
+				.in(CallScope.class);
 		
 		bind(GuicedServletKeys.getServletRequestKey())
-						.toProvider(HttpServletRequestProvider.class)
-						.in(CallScope.class);
+				.toProvider(HttpServletRequestProvider.class)
+				.in(CallScope.class);
 		
 		bind(GuicedServletKeys.getHttpServletRequestKey())
-						.toProvider(HttpServletRequestProvider.class)
-						.in(CallScope.class);
+				.toProvider(HttpServletRequestProvider.class)
+				.in(CallScope.class);
 		
 		bind(GuicedServletKeys.getServletResponseKey())
-						.toProvider(HttpServletResponseProvider.class)
-						.in(CallScope.class);
+				.toProvider(HttpServletResponseProvider.class)
+				.in(CallScope.class);
 		
 		bind(GuicedServletKeys.getHttpServletResponseKey())
-						.toProvider(HttpServletResponseProvider.class)
-						.in(CallScope.class);
+				.toProvider(HttpServletResponseProvider.class)
+				.in(CallScope.class);
 		
 		bind(GuicedServletKeys.getServletContextKey())
-						.toProvider(HttpServletContextProvider.class)
-						.in(CallScope.class);
+				.toProvider(HttpServletContextProvider.class)
+				.in(CallScope.class);
 		
 		bind(CallScopeProperties.class).in(CallScope.class);
 		
-		Set<IGuiceSiteBinder> loader = GuiceContext.instance()
-						.getLoader(IGuiceSiteBinder.class, true, ServiceLoader.load(IGuiceSiteBinder.class));
+		/*Set<IGuiceSiteBinder> loader = IGuiceContext.getLoader(IGuiceSiteBinder.class, true, ServiceLoader.load(IGuiceSiteBinder.class));
 		for (IGuiceSiteBinder siteBinder : loader)
 		{
 			install((com.google.inject.Module) siteBinder);
-			GuiceSiteInjectorModule.log.log(Level.CONFIG, "Loading IGuiceSiteBinder - {0}", siteBinder.getClass()
-							.getCanonicalName());
-		}
+			GuiceSiteInjectorModule.log.log(Level.CONFIG,
+			                                "Loading IGuiceSiteBinder - {0}",
+			                                siteBinder
+					                                .getClass()
+					                                .getCanonicalName());
+		}*/
 	}
 }

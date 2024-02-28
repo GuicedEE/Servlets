@@ -1,4 +1,5 @@
-import com.guicedee.guicedservlets.servlets.services.IGuiceSiteBinder;
+
+import com.guicedee.guicedinjection.interfaces.*;
 import com.guicedee.guicedservlets.tests.ServletTestBindings;
 
 module guiced.servlets.test {
@@ -10,8 +11,9 @@ module guiced.servlets.test {
 	requires org.slf4j.simple;
 	requires static lombok;
 	requires org.apache.commons.io;
+	requires org.apache.commons.lang3;
 	
-	provides IGuiceSiteBinder with ServletTestBindings;
+	provides IGuiceModule with ServletTestBindings;
 	
 	opens com.guicedee.guicedservlets.tests to org.junit.platform.commons,com.google.guice;
 	opens com.guicedee.guicedservlets.tests.mocks to com.google.common,com.google.guice.extensions.servlet, com.google.guice;

@@ -4,7 +4,8 @@ import com.google.inject.Inject;
 import com.google.inject.name.Named;
 import com.google.inject.servlet.GuiceFilter;
 
-import com.guicedee.guicedinjection.*;
+
+import com.guicedee.client.*;
 import com.guicedee.guicedservlets.services.scopes.CallScoper;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
@@ -59,7 +60,7 @@ public class GuicedFilter
 	{
 		try {
 			scope.enter();
-			CallScopeProperties properties = GuiceContext.get(CallScopeProperties.class);
+			CallScopeProperties properties = IGuiceContext.get(CallScopeProperties.class);
 			properties.setWebCall(true);
 		}catch (java.lang.IllegalStateException T)
 		{
