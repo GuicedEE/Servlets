@@ -3,9 +3,9 @@ package com.guicedee.guicedservlets.tests;
 import com.google.inject.Key;
 import com.google.inject.servlet.RequestParameters;
 import com.google.inject.servlet.ServletScopes;
+import com.guicedee.client.CallScoper;
 import com.guicedee.client.IGuiceContext;
 import com.guicedee.guicedservlets.GuicedServletKeys;
-import com.guicedee.guicedservlets.services.scopes.CallScoper;
 import com.guicedee.guicedservlets.tests.mocks.MockHTTPSession;
 import com.guicedee.guicedservlets.tests.mocks.MockRequest;
 import com.guicedee.guicedservlets.tests.mocks.MockResponse;
@@ -13,12 +13,11 @@ import com.guicedee.guicedservlets.tests.mocks.MockServletContext;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.java.Log;
 import org.junit.jupiter.api.Test;
-
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -54,12 +53,12 @@ public class GuiceSiteInjectorModuleTest
 		HttpServletRequest req = IGuiceContext.get(HttpServletRequest.class);
 		CallScoper callScoper = IGuiceContext.get(CallScoper.class);
 		callScoper.enter();
-		
+
 		HttpServletRequest req2 = IGuiceContext.get(HttpServletRequest.class);
 		HttpServletResponse resp2 = IGuiceContext.get(HttpServletResponse.class);
 		HttpServletResponse resp = IGuiceContext.get(GuicedServletKeys.getHttpServletResponseKey());
 		callScoper.exit();
-		
+
 		System.out.println(obj);
 	}
 	

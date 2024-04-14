@@ -16,15 +16,12 @@
  */
 package com.guicedee.guicedservlets.services;
 
-import com.google.inject.*;
-import com.google.inject.name.*;
-import com.google.inject.servlet.*;
-import com.guicedee.guicedinjection.interfaces.*;
-import com.guicedee.guicedservlets.*;
-import com.guicedee.guicedservlets.services.scopes.*;
-import com.guicedee.guicedservlets.servlets.services.scopes.*;
+import com.google.inject.servlet.ServletModule;
+import com.guicedee.guicedinjection.interfaces.IGuiceModule;
+import com.guicedee.guicedservlets.GuicedServletKeys;
+import com.guicedee.guicedservlets.servlets.services.scopes.CallScope;
 import com.guicedee.guicedservlets.websockets.options.CallScopeProperties;
-import lombok.extern.java.*;
+import lombok.extern.java.Log;
 
 /**
  * Exposes the site injection modules for consumption
@@ -36,16 +33,6 @@ import lombok.extern.java.*;
 @Log
 public class GuiceSiteInjectorModule extends ServletModule implements IGuiceModule<GuiceSiteInjectorModule>
 {
-	
-	private final CallScoper callScope = new CallScoper();
-	
-	@Provides
-	@Named("callScope")
-	CallScoper provideCallScope()
-	{
-		return callScope;
-	}
-	
 	/**
 	 * Default Constructor
 	 */
@@ -71,8 +58,7 @@ public class GuiceSiteInjectorModule extends ServletModule implements IGuiceModu
 	@Override
 	public void configureServlets()
 	{
-		bindScope(CallScope.class, callScope);
-		
+
 		bind(GuicedServletKeys.getHttpSessionKey())
 				.toProvider(HttpSessionProvider.class)
 				.in(CallScope.class);

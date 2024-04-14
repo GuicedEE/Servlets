@@ -1,12 +1,9 @@
 package com.guicedee.guicedservlets;
 
 import com.google.inject.Inject;
-import com.google.inject.name.Named;
 import com.google.inject.servlet.GuiceFilter;
-
-
-import com.guicedee.client.*;
-import com.guicedee.guicedservlets.services.scopes.CallScoper;
+import com.guicedee.client.CallScoper;
+import com.guicedee.client.IGuiceContext;
 import com.guicedee.guicedservlets.websockets.options.CallScopeProperties;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
@@ -14,8 +11,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.IOException;
-
-import static com.guicedee.guicedservlets.GuicedServletKeys.*;
 
 /**
  * Enables web scopes for guiced items
@@ -30,7 +25,6 @@ public class GuicedFilter
 	private static boolean killSessionOnRequestClosed = true;
 	
 	@Inject
-	@Named("callScope")
 	CallScoper scope;
 
 	/**

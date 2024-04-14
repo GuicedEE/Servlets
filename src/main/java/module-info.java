@@ -1,4 +1,4 @@
-import com.guicedee.guicedservlets.implementations.*;
+import com.guicedee.guicedservlets.implementations.OnCallScopeEnterBindFromRequest;
 
 module com.guicedee.guicedservlets {
 	
@@ -11,9 +11,7 @@ module com.guicedee.guicedservlets {
 	
 	exports com.guicedee.guicedservlets;
 	exports com.guicedee.guicedservlets.services;
-	exports com.guicedee.guicedservlets.services.scopes;
-	
-	opens com.guicedee.guicedservlets.services.scopes to com.google.common,com.google.guice.extensions.servlet, com.google.guice;
+
 	opens com.guicedee.guicedservlets to com.google.common,com.google.guice.extensions.servlet, com.google.guice;
 	opens com.guicedee.guicedservlets.services to com.google.guice;
 	opens com.guicedee.guicedservlets.implementations to com.google.guice;
