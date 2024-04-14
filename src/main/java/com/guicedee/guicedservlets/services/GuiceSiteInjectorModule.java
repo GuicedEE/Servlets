@@ -23,6 +23,7 @@ import com.guicedee.guicedinjection.interfaces.*;
 import com.guicedee.guicedservlets.*;
 import com.guicedee.guicedservlets.services.scopes.*;
 import com.guicedee.guicedservlets.servlets.services.scopes.*;
+import com.guicedee.guicedservlets.websockets.options.CallScopeProperties;
 import lombok.extern.java.*;
 
 /**

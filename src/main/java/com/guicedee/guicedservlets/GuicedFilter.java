@@ -7,6 +7,7 @@ import com.google.inject.servlet.GuiceFilter;
 
 import com.guicedee.client.*;
 import com.guicedee.guicedservlets.services.scopes.CallScoper;
+import com.guicedee.guicedservlets.websockets.options.CallScopeProperties;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
 import lombok.Getter;
