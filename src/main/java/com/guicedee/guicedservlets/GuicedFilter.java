@@ -5,6 +5,7 @@ import com.google.inject.servlet.GuiceFilter;
 import com.guicedee.client.CallScoper;
 import com.guicedee.client.IGuiceContext;
 import com.guicedee.guicedservlets.websockets.options.CallScopeProperties;
+import com.guicedee.guicedservlets.websockets.options.CallScopeSource;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
 import lombok.Getter;
@@ -56,7 +57,7 @@ public class GuicedFilter
 		try {
 			scope.enter();
 			CallScopeProperties properties = IGuiceContext.get(CallScopeProperties.class);
-			properties.setWebCall(true);
+			properties.setSource(CallScopeSource.Http);
 		}catch (java.lang.IllegalStateException T)
 		{
 			//already in scope
