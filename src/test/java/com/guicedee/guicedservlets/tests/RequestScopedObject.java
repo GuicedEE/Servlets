@@ -1,4 +1,4 @@
-package com.guicedee.guicedservlets;
+package com.guicedee.guicedservlets.tests;
 
 import com.google.inject.servlet.RequestScoped;
 

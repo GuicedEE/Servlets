@@ -1,4 +1,4 @@
-package com.guicedee.guicedservlets.services.mocks;
+package com.guicedee.guicedservlets.tests.mocks;
 
 import java.security.Principal;
 import java.util.HashSet;

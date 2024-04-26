@@ -1,22 +1,26 @@
 package com.guicedee.guicedservlets.services;
 
 import com.google.inject.Provider;
-import com.guicedee.guicedinjection.GuiceContext;
-import com.guicedee.guicedservlets.services.mocks.MockRequest;
-import com.guicedee.guicedservlets.services.mocks.MockResponse;
-import com.guicedee.guicedservlets.services.scopes.CallScope;
+import com.guicedee.client.IGuiceContext;
+import com.guicedee.guicedservlets.servlets.services.scopes.CallScope;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.Setter;
 
 @CallScope
 public class HttpServletResponseProvider implements Provider<HttpServletResponse> {
-
+    
+    @Setter
+    private static HttpServletResponse override;
+    
     @Override
     public HttpServletResponse get() {
         try {
-            return GuiceContext.get(HttpServletResponse.class);
+            return IGuiceContext.get(HttpServletResponse.class);
         } catch (Throwable T) {
-            return new MockResponse();
+            if(override != null)
+                return override;
+            throw new IllegalStateException("HttpServletResponse is not bound to anything");
         }
     }
 }

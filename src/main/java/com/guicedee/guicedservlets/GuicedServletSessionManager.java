@@ -2,6 +2,8 @@ package com.guicedee.guicedservlets;
 
 import jakarta.servlet.annotation.WebListener;
 import jakarta.servlet.http.*;
+
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -10,13 +12,13 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 @WebListener
 public class GuicedServletSessionManager
-		implements HttpSessionBindingListener, HttpSessionListener
+				implements HttpSessionBindingListener, HttpSessionListener
 {
 	/**
 	 * A session mapping
 	 */
-	private static final Map<String, HttpSession> sessionMap = new ConcurrentHashMap<>();
-
+	private static final Map<String, HttpSession> sessionMap = new HashMap<>();
+	
 	/**
 	 * Returns a map of all the currently allocated sessions
 	 *
@@ -26,56 +28,52 @@ public class GuicedServletSessionManager
 	{
 		return sessionMap;
 	}
-
+	
 	/**
 	 * Method valueBound ...
 	 *
-	 * @param event
-	 * 		of type HttpSessionBindingEvent
+	 * @param event of type HttpSessionBindingEvent
 	 */
 	@Override
 	public void valueBound(HttpSessionBindingEvent event)
 	{
 		sessionMap.put(event.getSession()
-		                    .getId(), event.getSession());
+						.getId(), event.getSession());
 	}
-
+	
 	/**
 	 * Method valueUnbound ...
 	 *
-	 * @param event
-	 * 		of type HttpSessionBindingEvent
+	 * @param event of type HttpSessionBindingEvent
 	 */
 	@Override
 	public void valueUnbound(HttpSessionBindingEvent event)
 	{
 		sessionMap.remove(event.getSession()
-		                       .getId());
+						.getId());
 	}
-
+	
 	/**
 	 * Method sessionCreated ...
 	 *
-	 * @param se
-	 * 		of type HttpSessionEvent
+	 * @param se of type HttpSessionEvent
 	 */
 	@Override
 	public void sessionCreated(HttpSessionEvent se)
 	{
 		sessionMap.put(se.getSession()
-		                 .getId(), se.getSession());
+						.getId(), se.getSession());
 	}
-
+	
 	/**
 	 * Method sessionDestroyed ...
 	 *
-	 * @param se
-	 * 		of type HttpSessionEvent
+	 * @param se of type HttpSessionEvent
 	 */
 	@Override
 	public void sessionDestroyed(HttpSessionEvent se)
 	{
 		sessionMap.remove(se.getSession()
-		                    .getId());
+						.getId());
 	}
 }

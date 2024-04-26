@@ -1,4 +1,4 @@
-package com.guicedee.guicedservlets.services.mocks;
+package com.guicedee.guicedservlets.tests.mocks;
 
 import com.google.common.hash.Hashing;
 

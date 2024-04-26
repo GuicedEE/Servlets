@@ -1,4 +1,4 @@
-package com.guicedee.guicedservlets.services.mocks;
+package com.guicedee.guicedservlets.tests.mocks;
 
 import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.WriteListener;
@@ -10,6 +10,7 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.text.DateFormat;
 import java.util.*;
+import java.util.function.Supplier;
 
 public class MockResponse
 		implements HttpServletResponse
@@ -309,7 +310,25 @@ public class MockResponse
 	{
 		redirectUrl = url;
 	}
-
+	
+	@Override
+	public void sendRedirect(String location, boolean clearBuffer) throws IOException
+	{
+		HttpServletResponse.super.sendRedirect(location, clearBuffer);
+	}
+	
+	@Override
+	public void sendRedirect(String location, int sc) throws IOException
+	{
+		HttpServletResponse.super.sendRedirect(location, sc);
+	}
+	
+	@Override
+	public void sendRedirect(String location, int sc, boolean clearBuffer) throws IOException
+	{
+	
+	}
+	
 	/**
 	 * Set a date header.
 	 *
@@ -761,7 +780,19 @@ public class MockResponse
 	{
 		return headers.keySet();
 	}
-
+	
+	@Override
+	public void setTrailerFields(Supplier<Map<String, String>> supplier)
+	{
+		HttpServletResponse.super.setTrailerFields(supplier);
+	}
+	
+	@Override
+	public Supplier<Map<String, String>> getTrailerFields()
+	{
+		return HttpServletResponse.super.getTrailerFields();
+	}
+	
 	/**
 	 * Get the encoded locale.
 	 *
