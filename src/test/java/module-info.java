@@ -1,5 +1,4 @@
-
-import com.guicedee.guicedinjection.interfaces.*;
+import com.guicedee.guicedinjection.interfaces.IGuiceModule;
 import com.guicedee.guicedservlets.tests.ServletTestBindings;
 
 module guiced.servlets.test {
@@ -7,8 +6,8 @@ module guiced.servlets.test {
 	
 	
 	requires org.junit.jupiter.api;
-	requires org.slf4j;
-	requires org.slf4j.simple;
+	//requires org.slf4j;
+	//requires org.slf4j.simple;
 	requires static lombok;
 	requires org.apache.commons.io;
 	requires org.apache.commons.lang3;
