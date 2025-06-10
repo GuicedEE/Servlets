@@ -20,7 +20,7 @@ import com.google.inject.servlet.ServletModule;
 import com.guicedee.guicedinjection.interfaces.IGuiceModule;
 import com.guicedee.guicedservlets.GuicedServletKeys;
 import com.guicedee.guicedservlets.servlets.services.scopes.CallScope;
-import com.guicedee.guicedservlets.websockets.options.CallScopeProperties;
+import com.guicedee.client.CallScopeProperties;
 import lombok.extern.java.Log;
 
 /**

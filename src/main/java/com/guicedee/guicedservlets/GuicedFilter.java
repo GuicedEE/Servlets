@@ -4,7 +4,7 @@ import com.google.inject.Inject;
 import com.google.inject.servlet.GuiceFilter;
 import com.guicedee.client.CallScoper;
 import com.guicedee.client.IGuiceContext;
-import com.guicedee.guicedservlets.websockets.options.CallScopeProperties;
+import com.guicedee.client.CallScopeProperties;
 import com.guicedee.guicedservlets.websockets.options.CallScopeSource;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
