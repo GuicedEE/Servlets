@@ -2,10 +2,10 @@ package com.guicedee.guicedservlets;
 
 import com.google.inject.Inject;
 import com.google.inject.servlet.GuiceFilter;
+import com.guicedee.client.CallScopeSource;
 import com.guicedee.client.CallScoper;
 import com.guicedee.client.IGuiceContext;
 import com.guicedee.client.CallScopeProperties;
-import com.guicedee.guicedservlets.websockets.options.CallScopeSource;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
 import lombok.Getter;
